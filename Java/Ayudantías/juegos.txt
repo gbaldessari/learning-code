@@ -1,0 +1,7 @@
+Pacman,5%
+Megaman,4%
+Mario Bros,15%
+Transformice,20%
+Contra 5,4%
+Ducks,30%
+Metal Slug,10%

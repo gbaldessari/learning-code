@@ -1,0 +1,42 @@
+8
+Harina,800
+Agua,300
+Sal,50
+Papas,1200
+Leche,900
+Tomates,1300
+Cebolla,750
+Aceite,1100
+16
+Harina,Marraqueta,6
+Harina,Empanada,3
+Agua,Marraqueta,2
+Agua,Empanada,1
+Sal,Marraqueta,1
+Sal,Papas fritas,1
+Sal,Empanada,1
+Papas,Puré,6
+Papas,Papas fritas,6    
+Leche,Puré,1        
+Tomates,Ensalada a la chilena,6                
+Cebolla,Ensalada a la chilena,3
+Cebolla,Empanada,2
+Aceite,Ensalada a la chilena,1
+Aceite,Papas fritas,2
+Aceite,Empanada,1
+15
+Menores,Ensalada a la chilena,0    
+Menores,Marraqueta,3    
+Menores,Puré,3    
+Menores,Papas fritas,7    
+Menores,Empanada,2
+Adolescentes,Ensalada a la chilena,0    
+Adolescentes,Marraqueta,2    
+Adolescentes,Puré,1    
+Adolescentes,Papas fritas,5    
+Adolescentes,Empanada,4
+Adultos,Ensalada a la chilena,1    
+Adultos,Marraqueta,3    
+Adultos,Puré,4    
+Adultos,Papas fritas,3    
+Adultos,Empanada,5

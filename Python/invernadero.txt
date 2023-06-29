@@ -1,0 +1,209 @@
+72wt340*Carex engelmannii L.H. Bailey*Desertico*203*27*20
+17ot961*Alophia drummondii R.C. Foster*Tropical*551*21*223
+07pz164*Lupinus eximius Burtt Davy*Desertico*741*11*230
+32bv170*Cryptantha crinita Greene*Tropical*748*28*96
+05bk863*Aspicilia pergibbosa Rasanen*Desertico*564*6*168
+18zx194*Timmia austriaca Hedw.*Templado*954*10*94
+32zh552*Scutellaria arenicola Small*Tropical*614*27*158
+12dx938*Chaenactis DC.*Templado*879*23*137
+19me029*Cryptantha crinita Greene*Tropical*200*28*8
+14ln390*Penstemon tenuiflorus Pennell*Tropical*262*6*125
+54ah062*Scutellaria arenicola Small*Tropical*416*23*207
+67kw697*Calochortus gunnisonii S. Watson*Templado*63*30*22
+53jo491*Isothecium myosuroides Brid.*Tropical*725*26*175
+03uu125*Acer pseudoplatanus L.*Desertico*232*25*7
+63df933*Scutellaria arenicola Small*Tropical*985*16*90
+74rv950*Lupinus caespitosus Nutt. var. caespitosus*Templado*482*12*233
+23ey465*Acer pseudoplatanus L.*Desertico*666*13*67
+29ag428*Exocarpos luteolus Forbes*Tropical*780*27*136
+52qx571*Cyrtandra*Templado*170*19*231
+48km883*Rinodina conradii Körb.*Tropical*627*14*101
+73rf627*Penstemon moffatii Eastw.*Desertico*253*15*28
+52oo559*Penstemon tenuiflorus Pennell*Tropical*1016*27*163
+30xq247*Reimarochloa Hitchc.*Templado*20*17*214
+00oh222*Isothecium myosuroides Brid.*Tropical*649*7*111
+27lk534*Calochortus gunnisonii S. Watson*Templado*561*8*240
+72tt500*Lobelia puberula Michx. var. pauciflora Bush*Desertico*310*12*218
+45zu398*Lupinus caespitosus Nutt. var. caespitosus*Templado*504*9*22
+00hc585*Alophia drummondii R.C. Foster*Tropical*936*7*119
+25jm326*Rinodina conradii Körb.*Tropical*392*6*252
+11fg142*Agropyron cristatum (L.) Gaertn.*Desertico*552*6*231
+68ii875*Timmia austriaca Hedw.*Templado*143*5*25
+95ld916*Carex engelmannii L.H. Bailey*Desertico*229*26*111
+18lc529*Agropyron cristatum (L.) Gaertn.*Desertico*208*17*203
+49jk671*Isothecium myosuroides Brid.*Tropical*753*27*67
+63rh781*Mammillaria thornberi Orcutt*Tropical*89*11*66
+25ek316*Chaenactis DC.*Templado*300*16*16
+70lt008*Lobelia puberula Michx. var. pauciflora Bush*Desertico*237*10*206
+81fk631*Timmia austriaca Hedw.*Templado*641*10*203
+87mi869*Lupinus caespitosus Nutt. var. caespitosus*Templado*556*19*46
+01vt831*Chaenactis DC.*Templado*651*15*153
+20kb168*Rinodina conradii Körb.*Tropical*193*8*110
+58nh083*Mammillaria thornberi Orcutt*Tropical*1000*0*26
+03wu752*Rhamnus smithii Greene*Tropical*981*5*20
+06uv764*Mammillaria thornberi Orcutt*Tropical*760*6*138
+85au343*Acer pseudoplatanus L.*Desertico*163*10*154
+09zf406*Lobelia puberula Michx. var. pauciflora Bush*Desertico*706*25*33
+66rg944*Timmia austriaca Hedw.*Templado*844*19*252
+80zm415*Calochortus gunnisonii S. Watson*Templado*588*18*205
+05hl742*Mammillaria thornberi Orcutt*Tropical*34*20*72
+95ua250*Faidherbia A. Chev.*Tropical*512*16*226
+26vv205*Penstemon tenuiflorus Pennell*Tropical*887*20*119
+85bj704*Rhamnus smithii Greene*Tropical*1256*44*10
+31vo673*Lupinus caespitosus Nutt. var. caespitosus*Templado*734*26*78
+56tn495*Penstemon moffatii Eastw.*Desertico*441*16*124
+56ip762*Chaenactis DC.*Templado*876*24*143
+44fo776*Isothecium myosuroides Brid.*Tropical*330*23*59
+57xu832*Alophia drummondii R.C. Foster*Tropical*781*18*30
+76vx558*Reimarochloa Hitchc.*Templado*87*13*110
+20ln049*Carex engelmannii L.H. Bailey*Desertico*423*18*118
+23qz383*Penstemon moffatii Eastw.*Desertico*998*20*226
+09bz765*Chaenactis DC.*Templado*115*28*208
+45nm389*Alophia drummondii R.C. Foster*Tropical*510*17*96
+96fu512*Lupinus eximius Burtt Davy*Desertico*950*21*181
+09in536*Acer pseudoplatanus L.*Desertico*930*27*222
+51zc789*Lupinus caespitosus Nutt. var. caespitosus*Templado*214*40*10
+21fs654*Carex engelmannii L.H. Bailey*Desertico*386*18*43
+31om262*Penstemon tenuiflorus Pennell*Tropical*491*10*60
+84ab712*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*773*16*41
+99zc179*Faidherbia A. Chev.*Tropical*414*27*182
+18au029*Carex engelmannii L.H. Bailey*Desertico*229*28*253
+53hv685*Lupinus eximius Burtt Davy*Desertico*667*25*119
+00zj819*Scutellaria arenicola Small*Tropical*472*20*185
+65tk383*Cyrtandra*Templado*890*16*76
+35rh888*Lupinus eximius Burtt Davy*Desertico*231*13*42
+07ob618*Faidherbia A. Chev.*Tropical*981*14*192
+62sg765*Faidherbia A. Chev.*Tropical*995*28*194
+68cd793*Cyrtandra*Templado*346*24*91
+56by500*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*325*8*139
+70eu619*Calochortus gunnisonii S. Watson*Templado*836*13*134
+61vr360*Scutellaria arenicola Small*Tropical*319*19*81
+15xv855*Rhamnus smithii Greene*Tropical*214*11*37
+12md118*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*466*60*30
+89ka668*Alophia drummondii R.C. Foster*Tropical*244*7*243
+96fa122*Penstemon moffatii Eastw.*Desertico*100*7*9
+09gi687*Penstemon moffatii Eastw.*Desertico*557*16*89
+18bv711*Agropyron cristatum (L.) Gaertn.*Desertico*765*19*99
+01uy804*Cryptantha crinita Greene*Tropical*700*6*212
+14lg000*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*21*13*13
+05hr347*Cryptantha crinita Greene*Tropical*611*6*230
+36sg864*Lupinus caespitosus Nutt. var. caespitosus*Templado*545*18*53
+36cp208*Exocarpos luteolus Forbes*Tropical*946*20*147
+14jk312*Acer pseudoplatanus L.*Desertico*237*13*118
+73fa926*Timmia austriaca Hedw.*Templado*969*12*217
+47ku020*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*517*16*76
+52qu352*Penstemon tenuiflorus Pennell*Tropical*359*29*226
+68ty668*Penstemon moffatii Eastw.*Desertico*223*30*72
+27sm430*Aspicilia pergibbosa Rasanen*Desertico*793*29*60
+02qr244*Chaenactis DC.*Templado*321*11*116
+07or066*Mammillaria thornberi Orcutt*Tropical*926*9*62
+45jy386*Rhamnus smithii Greene*Tropical*274*29*76
+55yn512*Agropyron cristatum (L.) Gaertn.*Desertico*648*13*158
+85vz310*Exocarpos luteolus Forbes*Tropical*497*5*173
+09ec377*Lobelia puberula Michx. var. pauciflora Bush*Desertico*51*6*6
+96gn973*Calochortus gunnisonii S. Watson*Templado*890*30*255
+26xc358*Mammillaria thornberi Orcutt*Tropical*153*19*179
+65pj582*Exocarpos luteolus Forbes*Tropical*478*11*161
+95gm120*Alophia drummondii R.C. Foster*Tropical*188*6*73
+79na091*Exocarpos luteolus Forbes*Tropical*968*7*222
+33et373*Cryptantha crinita Greene*Tropical*559*23*22
+71ur440*Aspicilia pergibbosa Rasanen*Desertico*220*25*173
+91nu679*Cyrtandra*Templado*831*25*188
+47nb930*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*975*8*152
+72es411*Penstemon tenuiflorus Pennell*Tropical*1025*69*256
+65im899*Acer pseudoplatanus L.*Desertico*59*24*208
+80bc059*Scutellaria arenicola Small*Tropical*703*30*180
+76ov935*Faidherbia A. Chev.*Tropical*291*16*191
+67zn482*Reimarochloa Hitchc.*Templado*625*7*106
+49av890*Mammillaria thornberi Orcutt*Tropical*555*26*159
+64om466*Carex engelmannii L.H. Bailey*Desertico*160*30*243
+46ef217*Agropyron cristatum (L.) Gaertn.*Desertico*456*19*232
+79cj919*Lobelia puberula Michx. var. pauciflora Bush*Desertico*165*19*132
+62qc537*Rhamnus smithii Greene*Tropical*178*17*250
+86am779*Rhamnus smithii Greene*Tropical*205*27*41
+26cf225*Penstemon moffatii Eastw.*Desertico*709*12*160
+84iv353*Isothecium myosuroides Brid.*Tropical*671*10*153
+06zx942*Cryptantha crinita Greene*Tropical*294*25*165
+84ep933*Rinodina conradii Körb.*Tropical*611*6*40
+83hy200*Cyrtandra*Templado*929*17*77
+89xf713*Rinodina conradii Körb.*Tropical*655*15*95
+53cm639*Lupinus caespitosus Nutt. var. caespitosus*Templado*594*22*96
+03ga100*Rhamnus smithii Greene*Tropical*615*7*147
+27ou211*Rinodina conradii Körb.*Tropical*7*13*63
+52tw931*Rinodina conradii Körb.*Tropical*517*21*161
+54wo559*Isothecium myosuroides Brid.*Tropical*1009*20*100
+69my479*Timmia austriaca Hedw.*Templado*716*22*233
+78cy975*Reimarochloa Hitchc.*Templado*606*15*204
+96wh336*Lupinus eximius Burtt Davy*Desertico*141*8*183
+01xx296*Scutellaria arenicola Small*Tropical*0*35*60
+58pi404*Isothecium myosuroides Brid.*Tropical*340*30*38
+65qu366*Penstemon tenuiflorus Pennell*Tropical*790*28*218
+76vt862*Alophia drummondii R.C. Foster*Tropical*166*17*42
+06kf473*Exocarpos luteolus Forbes*Tropical*761*27*122
+07np180*Reimarochloa Hitchc.*Templado*599*25*128
+76ip539*Agropyron cristatum (L.) Gaertn.*Desertico*689*7*163
+75rt803*Cyrtandra*Templado*3*2*456
+86fn140*Scutellaria arenicola Small*Tropical*300*23*17
+28ao413*Exocarpos luteolus Forbes*Tropical*395*6*87
+11bm234*Acer pseudoplatanus L.*Desertico*719*6*114
+73zy646*Cyrtandra*Templado*460*9*228
+53tf166*Calochortus gunnisonii S. Watson*Templado*908*27*215
+00np327*Lupinus eximius Burtt Davy*Desertico*231*30*177
+94ep427*Carex engelmannii L.H. Bailey*Desertico*959*10*189
+79jk007*Acer pseudoplatanus L.*Desertico*51*26*29
+54sy122*Penstemon moffatii Eastw.*Desertico*1050*13*300
+69wd188*Aspicilia pergibbosa Rasanen*Desertico*571*7*81
+89et713*Mammillaria thornberi Orcutt*Tropical*588*27*171
+04kd528*Lobelia puberula Michx. var. pauciflora Bush*Desertico*995*9*134
+88hl812*Lobelia puberula Michx. var. pauciflora Bush*Desertico*713*14*180
+04hd032*Reimarochloa Hitchc.*Templado*696*29*81
+76pt443*Timmia austriaca Hedw.*Templado*372*25*186
+45js245*Agropyron cristatum (L.) Gaertn.*Desertico*706*19*254
+06rt578*Alophia drummondii R.C. Foster*Tropical*557*30*149
+19ag111*Penstemon moffatii Eastw.*Desertico*302*8*244
+67oi968*Reimarochloa Hitchc.*Templado*546*6*108
+38ym284*Calochortus gunnisonii S. Watson*Templado*688*11*124
+56ni829*Cryptantha crinita Greene*Tropical*494*27*180
+79kl277*Carex engelmannii L.H. Bailey*Desertico*200*14*143
+60rh249*Cryptantha crinita Greene*Tropical*220*10*185
+36bu740*Aspicilia pergibbosa Rasanen*Desertico*529*15*224
+62xu728*Mammillaria thornberi Orcutt*Tropical*1017*11*90
+54wf080*Scutellaria arenicola Small*Tropical*183*20*47
+27ym778*Lupinus eximius Burtt Davy*Desertico*278*21*174
+61hr848*Aspicilia pergibbosa Rasanen*Desertico*629*19*62
+43hx708*Faidherbia A. Chev.*Tropical*272*19*179
+00qt222*Lobelia puberula Michx. var. pauciflora Bush*Desertico*2000*3*222
+42ga970*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*340*25*135
+18ku407*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*99*11*71
+62zr781*Cyrtandra*Templado*216*16*218
+01ld804*Acer pseudoplatanus L.*Desertico*1017*25*333
+03jq024*Exocarpos luteolus Forbes*Tropical*930*14*42
+20xb669*Rhamnus smithii Greene*Tropical*103*8*8
+37rj845*Calochortus gunnisonii S. Watson*Templado*158*14*197
+83ul232*Faidherbia A. Chev.*Tropical*712*13*210
+72wn579*Rhamnus smithii Greene*Tropical*750*9*146
+35dh636*Lupinus caespitosus Nutt. var. caespitosus*Templado*51*23*67
+16xc870*Acer pseudoplatanus L.*Desertico*1021*5*241
+58bv693*Aspicilia pergibbosa Rasanen*Desertico*699*15*43
+91eo439*Aspicilia pergibbosa Rasanen*Desertico*16*12*49
+73qp619*Rinodina conradii Körb.*Tropical*39*8*87
+56ab933*Mammillaria thornberi Orcutt*Tropical*542*15*110
+01yg122*Penstemon moffatii Eastw.*Desertico*15*12*6
+78bc273*Lobelia puberula Michx. var. pauciflora Bush*Desertico*434*6*27
+13ci258*Lupinus caespitosus Nutt. var. caespitosus*Templado*608*28*119
+54zn037*Timmia austriaca Hedw.*Templado*232*24*186
+37gh450*Agropyron cristatum (L.) Gaertn.*Desertico*1*23*1
+94mk378*Ammoselinum giganteum J.M. Coult. & Rose*Tropical*335*22*74
+44kt060*Lupinus eximius Burtt Davy*Desertico*654*10*149
+74xq927*Timmia austriaca Hedw.*Templado*364*5*253
+43hb611*Penstemon tenuiflorus Pennell*Tropical*20*8*47
+35wv899*Aspicilia pergibbosa Rasanen*Desertico*874*10*62
+78se308*Carex engelmannii L.H. Bailey*Desertico*466*25*198
+97al697*Cyrtandra*Templado*958*7*121
+62za505*Reimarochloa Hitchc.*Templado*440*17*188
+18zn380*Penstemon tenuiflorus Pennell*Tropical*811*13*113
+32di319*Lupinus caespitosus Nutt. var. caespitosus*Templado*697*18*37
+54tq402*Isothecium myosuroides Brid.*Tropical*165*6*72
+27ck643*Chaenactis DC.*Templado*220*7*28
+48jn687*Faidherbia A. Chev.*Tropical*239*14*157
+54dq347*Chaenactis DC.*Templado*830*30*120

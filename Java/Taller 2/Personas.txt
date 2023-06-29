@@ -1,0 +1,7 @@
+Pablo,123456,piloto,GX
+Pedro,689312,ensamblador,GX
+Juan,102938,ensamblador,GX
+Sergio,654321,ensamblador,GX
+César,473829,ensamblador,GX
+Nicolás,102030,ensamblador,GX
+g,g,admin,ADMINISTRACION

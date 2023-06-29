@@ -1,0 +1,17 @@
+Pirata,Marzo,ClínicaC,Corte de uñas
+Simeon,Diciembre,ClínicaB,Resfrío
+Bicha,Enero,ClínicaB,Corte de pelo
+Bicha,Octubre,ClínicaB,Corte de uñas
+Miriam,Octubre,ClínicaA,Corte de uñas
+Simeon,Octubre,ClínicaA,Gordura Extrema
+Marshall,Diciembre,ClínicaA,Corte de uñas
+Simeon,Febrero,ClínicaA,Resfrío
+Miriam,Febrero,ClínicaA,Resfrío
+Miriam,Marzo,ClínicaA,Resfrío
+Marshall,Enero,ClínicaA,Resfrío
+Miriam,Noviembre,ClínicaB,Corte de pelo
+Pirata,Marzo,ClínicaA,Resfrío
+Simeon,Enero,ClínicaA,Gordura Extrema
+Pirata,Marzo,ClínicaA,Corte de uñas
+Marshall,Marzo,ClínicaB,Gordura Extrema
+Pirata,Marzo,ClínicaA,Corte de uñas

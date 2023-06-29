@@ -1,0 +1,6 @@
+Motel Mario,71397,4700000
+UCN Simulator,54276,2900000
+GTA VI,53923,8600000
+Minecraft 2,42398,7000000
+Half-Life 3,96786,2000000
+Among Us: The Impostor Strikes Back,51118,3600000

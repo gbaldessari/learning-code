@@ -1,0 +1,5 @@
+1,zapatillas,5000,1
+9,sillas,1000,3
+3,computadores,50,10
+1,zapatillas,20000,1
+1,zapatillas,1,1

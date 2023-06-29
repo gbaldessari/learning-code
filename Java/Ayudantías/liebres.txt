@@ -1,0 +1,10 @@
+MutedNewt,1,10.02374
+Markianece,1,10.736012
+Bulletheart,0
+Saddlewitch,1,10.011359
+JollyJoist,1,10.366807
+Firepoint,0
+Robotik,1,10.029158
+RowanTree,1,10.434141
+RowanTwo,0
+Marling,1,10.556064

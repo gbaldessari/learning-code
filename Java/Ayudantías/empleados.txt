@@ -1,0 +1,12 @@
+Gabe Newell,18362299-8,17000
+Masahiro Sakurai,28502076-4,60000
+Sid Meir,29667154-0,86000
+Neil Druckmann,29216535-8,96000
+Cory Barlog,14094390-1,93000
+Hideki Kamiya,13397965-3,99000
+Hideo Kojima,19149466-1,54000
+Peter Molyneux,11761256-2,38000
+Cliff Bleszinski,15711082-8,10000
+Todd Howard,24930137-1,52000
+Tetsuya Nomura,18958709-8,37000
+Shigeru Miyamoto,18588865-7,46000

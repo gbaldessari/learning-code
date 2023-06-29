@@ -1,0 +1,5 @@
+LunEs,eDo,1,6
+maRTes,teRMo,2,7
+mIercoles,caLCulo,3,8
+jueVes,PIi,4,9
+viERnes,iNGles,5,10

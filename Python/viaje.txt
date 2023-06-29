@@ -1,0 +1,6 @@
+Vallenar,LaSerena,25
+LaSerena,Vallenar,13
+LaSerena,Vallenar,44
+LaSerena,Coquimbo,24
+Coquimbo,LaSerena,10
+Coquimbo,LaSerena,18

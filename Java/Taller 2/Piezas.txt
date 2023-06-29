@@ -1,0 +1,5 @@
+casco samurai,00001,cabeza,Japón,100
+brazos fuertes,00002,brazos,Perú,200
+piernas de acero,00003,piernas,Venezuela,200
+pechera gumdam,00004,torax,Italia,300
+alas de mitrilo,00005,cualidad extra,Chile,400

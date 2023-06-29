@@ -1,0 +1,6 @@
+Cobre,15000,Chile
+Diamante,10000,Sudán
+Acero,20000,Brasil
+Hierro,30000,Argentina
+Oro,10000,Perú
+Plata,15000,Japón
