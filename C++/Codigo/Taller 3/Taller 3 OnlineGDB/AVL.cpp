@@ -3,7 +3,7 @@
 AVL::AVL() {
     raiz = NULL;
 }
-int AVL::max(int a, int b) {
+int AVL::mayor(int a, int b) {
     if (a > b) return a;
     return b;
 }
@@ -15,7 +15,7 @@ void AVL::actualizarAltura(Nodo* nodo) {
     if (nodo) {
         int alturaIzq = getAltura(nodo->izq);
         int alturaDer = getAltura(nodo->der);
-        nodo->altura = 1 + max(alturaIzq, alturaDer);
+        nodo->altura = 1 + mayor(alturaIzq, alturaDer);
     }
 }
 int AVL::getBalance(Nodo* nodo) {

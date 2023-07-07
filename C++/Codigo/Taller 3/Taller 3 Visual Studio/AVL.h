@@ -14,7 +14,6 @@ struct Nodo {
 class AVL {
 private:
     Nodo* raiz;
-    int max(int a, int b);
     int getAltura(Nodo* nodo);
     void actualizarAltura(Nodo* nodo);
     int getBalance(Nodo* nodo);
@@ -23,8 +22,9 @@ private:
     Nodo* rr(Nodo* nodo);
     int eliminarInOrderAlgorimo(Nodo* nodo, int numero);
     Nodo* ingresarNodo(Nodo* nodo, Nodo* nuevoNodo);
-    Nodo* buscarNodo(Nodo* nodo, int numero);
-    Nodo* eliminarNodo(Nodo* nodo, int numero);
+    Nodo* buscarNodo(Nodo* nodo, int turno);
+    Nodo* eliminarNodo(Nodo* nodo, int turno);
+    int mayor(int a, int b);
 public:
     AVL();
     int eliminacionInOrder(int numero);

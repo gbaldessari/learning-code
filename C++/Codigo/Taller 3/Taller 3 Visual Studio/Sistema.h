@@ -11,6 +11,7 @@ private:
     int ingresarFila(string dato, int cont);
     void eliminar();
     string capitalize(string dato);
+    void imprimirNumeros();
 public:
     Sistema();
     void menu(Sistema* sistema);

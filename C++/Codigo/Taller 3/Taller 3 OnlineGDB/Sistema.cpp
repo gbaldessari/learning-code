@@ -1,6 +1,7 @@
-#include "Sistema.h"
 #include <cstdlib>
 #include <ctime>
+#include "Sistema.h"
+
 Sistema::Sistema() {
     arbol = new AVL();
     contadorGlobal = 0;
@@ -10,6 +11,7 @@ Sistema::Sistema() {
 void Sistema::menu(Sistema* sistema){
     int contadorQueue = 0;
     string dato;
+    bool arbolLleno = false;
     do
     {
         cout<<"==Consulta Medica=="<<endl;
@@ -20,10 +22,21 @@ void Sistema::menu(Sistema* sistema){
         if (dato=="Salir"){
             cout<<"Cambio de turno"<<endl;
         }else{
-            contadorQueue = ingresarFila(dato, contadorQueue);
+            contadorQueue = sistema->ingresarFila(dato, contadorQueue);
+            if(contadorGlobal == 100){
+                arbolLleno = true;
+            }
         }
         cout<<endl;
-    } while (dato!="Salir");
+    } while (dato!="Salir"&&!arbolLleno);
+    if(arbolLleno){
+        imprimirNumeros();
+    }
+}
+void Sistema::imprimirNumeros(){
+    for(int i = 0;i<10;i++){
+        cout<<to_string(i+1)<<": "<<to_string(numeros[i])<<endl;
+    }
 }
 int Sistema::ingresarFila(string dato, int cont){
     int contadorQueue = cont;
@@ -87,8 +100,9 @@ void Sistema::ingresarArbol() {
         contadorGlobal++;
         fila.pop();
         eliminar();
-        if(contadorGlobal==100){
+        if(contadorGlobal>100){
             arbol->eliminarRaiz();
+            contadorGlobal--;
         }
     }
     cout<<"Paciencia, el doctor Ángel Muñoz los atendera en un momento"<<endl;
