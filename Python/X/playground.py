@@ -1,11 +1,12 @@
 def ordenarLista1(lista): # Para ordernar una lista numérica de menor a mayor
     for a in range(len(lista) -1):
         for b in range(a+1, len(lista)):
+            print("A")
             if lista[a] > lista[b]:
                 aux = lista[a]
                 lista[a] = lista[b]
                 lista[b] = aux
-
+                
                 """
                 aquí puedes copiar y pegar
                 otras listas si necesitas también
@@ -23,6 +24,7 @@ def ordenarLista1(lista): # Para ordernar una lista numérica de menor a mayor
 def ordenarLista2(lista): # Para ordernar una lista numérica de mayor a menor
     for a in range(len(lista) -1):
         for b in range(a+1, len(lista)):
+            
             if lista[a] < lista[b]:
                 aux = lista[a]
                 lista[a] = lista[b]
@@ -99,7 +101,7 @@ así te ahorras código
 
 # == EJEMPLO DE USO ==
 
-lista = [4, 1, 2, 7, 8, 4, 6, 4] # LISTA DE EJEMPLO
+lista = [1,2,3,4,5,6] # LISTA DE EJEMPLO
 
 # PRINTS
 print("El orden de menor a mayor es:", ordenarLista1(lista))
@@ -109,4 +111,4 @@ print("El promedio de los números es:", promedioLista(lista))
 print("El máximo número en la lista es:", encontrarElMaximo(lista))
 print("El mínimo número en la lista es:", encontrarElMinimo(lista))
 print("¿El número 5 existe en la lista?", 5 in lista)
-print("¿Cuál es la posición del 6 en la lista?", lista.index(6))
+print("¿Cuál es la posición del 6 en la lista?", lista.index(5))
