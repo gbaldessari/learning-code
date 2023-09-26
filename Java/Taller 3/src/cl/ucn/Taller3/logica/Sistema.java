@@ -17,7 +17,7 @@ public interface Sistema {
      */
 	public String[] rarezas = {"PP","PE","PC"};
 	  /**
-     * Añade un nuevo robot de la humanidad al sistema.
+     * Anade un nuevo robot de la humanidad al sistema.
      * Restricciones:
      *  Pre:
      *      Todos los parametros deben de ser no nulos y contener valores validos.
@@ -28,7 +28,7 @@ public interface Sistema {
      */
 	void ingresarRobotHumano(int[] index, String[] datos);
 	/**
-     * Añade un nuevo robot alienigena al sistema.
+     * Anade un nuevo robot alienigena al sistema.
      * Restricciones:
      *  Pre:
      *      Todos los parametros deben ser no nulos y contener valores validos.
@@ -197,7 +197,7 @@ public interface Sistema {
      */
 	String[] getListaArmas();
 	/**
-     * Añade una cabeza al sistema.
+     * Anade una cabeza al sistema.
      * Restricciones:
      * 	Pre:
      *      Todos los parametros deben ser validos y no nulos.
@@ -210,7 +210,7 @@ public interface Sistema {
      */
 	void ingresarCabeza(String nombre, int rareza, int velocidad, int vida);
 	/**
-     * Añade un torax al sistema.
+     * Anade un torax al sistema.
      * Restricciones:
      * 	Pre:
      *      Todos los parametros deben ser validos y no nulos.
@@ -222,7 +222,7 @@ public interface Sistema {
      */
 	void ingresarTorax(String nombre, int rareza, int vida);
 	/**
-     * Añade unos brazos al sistema.
+     * Anade unos brazos al sistema.
      * Restricciones:
      * 	Pre:
      *      Todos los parametros deben ser validos y no nulos.
@@ -234,7 +234,7 @@ public interface Sistema {
      */
 	void ingresarBrazos(String nombre, int rareza, int ataque);
 	/**
-     * Añade unas piernas al sistema.
+     * Anade unas piernas al sistema.
      * Restricciones:
      * 	Pre:
      *      Todos los parametros deben ser validos y no nulos.
@@ -246,17 +246,17 @@ public interface Sistema {
      */
 	void ingresarPiernas(String nombre, int rareza, int velocidad);
 	/**
-     * Añade un arma al sistema.
+     * Anade un arma al sistema.
      * Restricciones:
      * 	Pre:
      *      Todos los parametros deben ser validos y no nulos.
      *  Pos:
      *      Se ingresa un arma al sistema.
      * @param nombre Nombre de la cabeza.
-     * @param daño Valor de daño.
+     * @param dano Valor de dano.
      * @param velocidad Valor de velocidad.
      */
-	void ingresarArma(String nombre, int daño, int velocidad);
+	void ingresarArma(String nombre, int dano, int velocidad);
 	/**
      * Guarda los datos del sistema en los archivos.
      * Restricciones:
@@ -267,7 +267,7 @@ public interface Sistema {
      */
 	void guardarDatos();
 	/**
-     * Añade un robot al sistema.
+     * Anade un robot al sistema.
      * Restricciones:
      * 	Pre:
      *      El sistema debe estar inicializado.
@@ -277,7 +277,7 @@ public interface Sistema {
      */
 	void obtenerRobots(String[] linea);
 	/**
-     * Añade un arma al sistema.
+     * Anade un arma al sistema.
      * Restricciones:
      * 	Pre:
      *      El sistema debe estar inicializado.
@@ -287,7 +287,7 @@ public interface Sistema {
      */
 	void obtenerArmas(String[] linea);
 	/**
-     * Añade una pieza al sistema.
+     * Anade una pieza al sistema.
      * Restricciones:
      * 	Pre:
      *      El sistema debe estar inicializado.
@@ -297,7 +297,7 @@ public interface Sistema {
      */
 	void obtenerPiezas(String[] linea);
 	/**
-     * Añade un combate al sistema.
+     * Anade un combate al sistema.
      * Restricciones:
      * 	Pre:
      *      El sistema debe estar inicializado.

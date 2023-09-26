@@ -13,8 +13,8 @@ public class AdministradorVentanas {
 		VentanaSeleccionCombates v = new VentanaSeleccionCombates(administradorVentanas, sistema);
 		v.setVisible(true);
 	}
-	public void añadirPiezas(AdministradorVentanas administradorVentanas) {
-		VentanaAñadirPieza v = new VentanaAñadirPieza(administradorVentanas);
+	public void anadirPiezas(AdministradorVentanas administradorVentanas) {
+		VentanaAnadirPieza v = new VentanaAnadirPieza(administradorVentanas);
 		v.setVisible(true);
 	}
 	public void ensamblarRobot(AdministradorVentanas administradorVentanas) {
@@ -29,24 +29,24 @@ public class AdministradorVentanas {
 		VentanaRobotAlien v = new VentanaRobotAlien(administradorVentanas, sistema, index);
 		v.setVisible(true);
 	}
-	public void añadirCabeza(AdministradorVentanas administradorVentanas) {
-		VentanaAñadirCabeza v = new VentanaAñadirCabeza(administradorVentanas, sistema);
+	public void anadirCabeza(AdministradorVentanas administradorVentanas) {
+		VentanaAnadirCabeza v = new VentanaAnadirCabeza(administradorVentanas, sistema);
 		v.setVisible(true);
 	}
-	public void añadirTorax(AdministradorVentanas administradorVentanas) {
-		VentanaAñadirTorax v = new VentanaAñadirTorax(administradorVentanas, sistema);
+	public void anadirTorax(AdministradorVentanas administradorVentanas) {
+		VentanaAnadirTorax v = new VentanaAnadirTorax(administradorVentanas, sistema);
 		v.setVisible(true);
 	}
-	public void añadirBrazos(AdministradorVentanas administradorVentanas) {
-		VentanaAñadirBrazos v = new VentanaAñadirBrazos(administradorVentanas, sistema);
+	public void anadirBrazos(AdministradorVentanas administradorVentanas) {
+		VentanaAnadirBrazos v = new VentanaAnadirBrazos(administradorVentanas, sistema);
 		v.setVisible(true);		
 	}
-	public void añadirPiernas(AdministradorVentanas administradorVentanas) {
-		VentanaAñadirPiernas v = new VentanaAñadirPiernas(administradorVentanas, sistema);
+	public void anadirPiernas(AdministradorVentanas administradorVentanas) {
+		VentanaAnadirPiernas v = new VentanaAnadirPiernas(administradorVentanas, sistema);
 		v.setVisible(true);			
 	}
-	public void añadirArma(AdministradorVentanas administradorVentanas) {
-		VentanaAñadirArma v = new VentanaAñadirArma(administradorVentanas, sistema);
+	public void anadirArma(AdministradorVentanas administradorVentanas) {
+		VentanaAnadirArma v = new VentanaAnadirArma(administradorVentanas, sistema);
 		v.setVisible(true);			
 	}
 	public void robotCambiarPiezas(AdministradorVentanas administradorVentanas) {

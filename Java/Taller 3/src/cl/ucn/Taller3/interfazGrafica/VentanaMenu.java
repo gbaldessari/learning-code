@@ -31,11 +31,11 @@ public class VentanaMenu extends JFrame{
 		
 		botonSimulacion.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {administradorVentanas.seleccionCombates(administradorVentanas); setVisible(false);}});
 		
-		JButton botonAñadirPiezas = new JButton("Añadir Piezas");
-		botonAñadirPiezas.setBounds(180, 100, 140, 25);
-		panel.add(botonAñadirPiezas);
+		JButton botonAnadirPiezas = new JButton("Anadir Piezas");
+		botonAnadirPiezas.setBounds(180, 100, 140, 25);
+		panel.add(botonAnadirPiezas);
 		
-		botonAñadirPiezas.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {administradorVentanas.añadirPiezas(administradorVentanas); setVisible(false);}});
+		botonAnadirPiezas.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {administradorVentanas.anadirPiezas(administradorVentanas); setVisible(false);}});
 		
 		JButton botonEnsamblarRobot = new JButton("Ensamblar Robot");
 		botonEnsamblarRobot.setBounds(180, 150, 140, 25);

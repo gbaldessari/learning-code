@@ -76,7 +76,7 @@ public class SistemaImpl implements Sistema{
 		listaExtras = guardarExtras(listaExtras, r.getCabeza().getRareza());
 		lista[6] = r.getTipo();
 		
-		double ataque = r.getArma().getDaño()+r.getBrazos().getAtaque()+listaExtras[1];
+		double ataque = r.getArma().getDano()+r.getBrazos().getAtaque()+listaExtras[1];
 		double velocidad = r.getArma().getVelocidad()+r.getPiernas().getVelocidad()+r.getCabeza().getVelocidad();
 		double vida = r.getTorax().getVida()+r.getCabeza().getVida()+listaExtras[0];
 		
@@ -239,8 +239,8 @@ public class SistemaImpl implements Sistema{
 		Piernas piernas = new Piernas(nombre, rareza, "P", velocidad);
 		listaPiernas.add(piernas);		
 	}
-	public void ingresarArma(String nombre, int daño, int velocidad) {
-		Arma arma = new Arma(nombre, daño, velocidad);
+	public void ingresarArma(String nombre, int dano, int velocidad) {
+		Arma arma = new Arma(nombre, dano, velocidad);
 		listaArmas.add(arma);
 	}
 	public void guardarDatos() {
@@ -282,7 +282,7 @@ public class SistemaImpl implements Sistema{
 			writerPiezas.println();
 		}
 		for(int i = 0;i<listaArmas.size();i++) {
-			writerArmas.print(listaArmas.get(i).getNombre()+","+listaArmas.get(i).getDaño()+","+listaArmas.get(i).getVelocidad());
+			writerArmas.print(listaArmas.get(i).getNombre()+","+listaArmas.get(i).getDano()+","+listaArmas.get(i).getVelocidad());
 			writerArmas.println();
 		}
 		for(int i = 0;i<listaCombates.size();i++) {
@@ -431,7 +431,7 @@ public class SistemaImpl implements Sistema{
 		listaExtras = guardarExtras(listaExtras, r.getTorax().getRareza());
 		listaExtras = guardarExtras(listaExtras, r.getCabeza().getRareza());
 		
-		double ataque = r.getArma().getDaño()+r.getBrazos().getAtaque()+listaExtras[1];
+		double ataque = r.getArma().getDano()+r.getBrazos().getAtaque()+listaExtras[1];
 		double velocidad = r.getArma().getVelocidad()+r.getPiernas().getVelocidad()+r.getCabeza().getVelocidad();
 		double vida = r.getTorax().getVida()+r.getCabeza().getVida()+listaExtras[0];
 		
@@ -451,7 +451,7 @@ public class SistemaImpl implements Sistema{
 		listaExtras = guardarExtras(listaExtras, r.getTorax().getRareza());
 		listaExtras = guardarExtras(listaExtras, r.getCabeza().getRareza());
 		
-		double ataque = r.getArma().getDaño()+r.getBrazos().getAtaque()+listaExtras[1];
+		double ataque = r.getArma().getDano()+r.getBrazos().getAtaque()+listaExtras[1];
 		double velocidad = r.getArma().getVelocidad()+r.getPiernas().getVelocidad()+r.getCabeza().getVelocidad();
 		double vida = r.getTorax().getVida()+r.getCabeza().getVida()+listaExtras[0];
 		

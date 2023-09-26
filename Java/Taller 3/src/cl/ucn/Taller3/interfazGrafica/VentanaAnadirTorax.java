@@ -4,18 +4,18 @@ import java.awt.event.*;
 import javax.swing.*;
 import cl.ucn.Taller3.logica.Sistema;
 
-public class VentanaAñadirCabeza extends JFrame {
-	private static final long serialVersionUID = 5;
+public class VentanaAnadirTorax extends JFrame {
+	private static final long serialVersionUID = 6;
 	AdministradorVentanas administradorVentanas;
 	Sistema sistema;
-	public VentanaAñadirCabeza (AdministradorVentanas administradorVentanas,Sistema sistema) {
+	public VentanaAnadirTorax (AdministradorVentanas administradorVentanas,Sistema sistema) {
 		this.administradorVentanas = administradorVentanas;
 		this.sistema = sistema;
-		setSize(300, 400);
+		setSize(300, 350);
 		setLocationRelativeTo(null);
-		setMinimumSize(new Dimension(300,400));
+		setMinimumSize(new Dimension(300,350));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setTitle("Añadir cabeza");
+		setTitle("Anadir torax");
 		IniciarComponentes();
 	}
 	
@@ -44,50 +44,39 @@ public class VentanaAñadirCabeza extends JFrame {
 		selectorRareza.setBounds(100, 100, 140, 25);
         panel.add(selectorRareza);
 		
-        JLabel mensajeVelocidad = new JLabel("Velocidad");
-        mensajeVelocidad.setBounds(40, 150, 150, 25);
-		panel.add(mensajeVelocidad);
-		
-		JTextField ingresarVelocidad = new JTextField(20);
-		ingresarVelocidad.setBounds(100, 150, 140, 25);
-		panel.add(ingresarVelocidad);
-		
 		JLabel mensajeVida = new JLabel("Vida");
-		mensajeVida.setBounds(40, 200, 150, 25);
+		mensajeVida.setBounds(40, 150, 150, 25);
 		panel.add(mensajeVida);
 		
 		JTextField ingresarVida = new JTextField(20);
-		ingresarVida.setBounds(100, 200, 140, 25);
+		ingresarVida.setBounds(100, 150, 140, 25);
 		panel.add(ingresarVida);
         
 		JButton botonCrear = new JButton("Crear pieza");
-		botonCrear.setBounds(70, 250, 140, 25);
+		botonCrear.setBounds(70, 200, 140, 25);
 		panel.add(botonCrear);
 		
 		botonCrear.addActionListener(new ActionListener() { @Override public void actionPerformed(ActionEvent e) {
 			String nombre = ingresarNombre.getText();
-			String velocidad = ingresarVelocidad.getText();
 			String vida = ingresarVida.getText();
 			int rareza = selectorRareza.getSelectedIndex();
-			if(!nombre.isEmpty()||!velocidad.isEmpty()||!vida.isEmpty()){
-				int velocidadInt = 0;
+			if(!nombre.isEmpty()||!vida.isEmpty()) {
 				int vidaInt = 0;
 				Boolean error = false;
 				try {
-					velocidadInt = Integer.parseInt(velocidad);
 					vidaInt = Integer.parseInt(vida);
 				}
 				catch(java.lang.NumberFormatException e1) {
 					error = true;
 				}
 				if(!error) {
-					sistema.ingresarCabeza(nombre,rareza,velocidadInt,vidaInt);
+					sistema.ingresarTorax(nombre,rareza,vidaInt);
 					administradorVentanas.menu(administradorVentanas);setVisible(false);}}}});
 		
 		JButton botonVolver = new JButton("Volver");
-		botonVolver.setBounds(70, 300, 140, 25);
+		botonVolver.setBounds(70, 250, 140, 25);
 		panel.add(botonVolver);
 		
-		botonVolver.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {administradorVentanas.añadirPiezas(administradorVentanas);setVisible(false);}});
+		botonVolver.addActionListener(new ActionListener() {@Override public void actionPerformed(ActionEvent e) {administradorVentanas.anadirPiezas(administradorVentanas);setVisible(false);}});
 	}
 }
