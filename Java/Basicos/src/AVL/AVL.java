@@ -1,23 +1,15 @@
 package AVL;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
-import javax.swing.tree.TreeNode;
-
-import org.w3c.dom.Node;
-
 public class AVL<T> {
-
     private static class Node<E> {
         public E value;
         public String id;
         public int height;
         public Node<E> left;
         public Node<E> right;
-
         Node(String id, E value) {
             this.value = value;
             this.id = id;
@@ -26,7 +18,6 @@ public class AVL<T> {
             right = null;
         }
     }
-
     private Node<T> raiz;
 
     public AVL(){
@@ -60,9 +51,6 @@ public class AVL<T> {
             actualNode = actualNode.left;
         }
         return actualNode;
-    }
-    private void printId(Node<T> node){
-        System.out.println(node.id);
     }
     private Node<T> leftRotation(Node<T> node){
         Node<T> rightNode = node.right;
@@ -175,5 +163,22 @@ public class AVL<T> {
         Node<T> node = searchAlgorithm(raiz, id);
         if(node == null) return null;
         return node.value;
+    }
+    private Node<T> removeAlgorithm(Node<T> node,String id){
+        if(node == null) return null;
+        if(node.id.compareTo(id)<0){
+            node.right = removeAlgorithm(node.right, id);
+        }
+        else if(node.id.compareTo(id)>0){
+            node.left = removeAlgorithm(node.left, id);
+        }
+        else{
+            if(node.left == null){
+                return node.right;
+            }
+            else if(node.right == null){
+                return node.left;
+            }
+        }
     }
 }
