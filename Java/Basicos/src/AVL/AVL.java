@@ -1,5 +1,4 @@
 package AVL;
-
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,12 +18,15 @@ public class AVL<T> {
         }
     }
     private Node<T> raiz;
+    private int size;
 
     public AVL(){
         raiz = null;
+        size = 0;
     }
     public AVL(String id, T value){
         raiz = new Node<T>(id, value);
+        size = 1;
     }
     private int max(int a,int b){
         if(a>b)return a;
@@ -131,6 +133,7 @@ public class AVL<T> {
             node.right = addAlgorithm(node.right, newNode);
         }
         else{
+            size--;
             return node;
         }
         updateHeight(node);
@@ -142,15 +145,18 @@ public class AVL<T> {
             return leftRotation(node);
         }
         else if(balanceFactor > 1 && node.left.id.compareTo(newNode.id)<0){
-            return leftRotation(node);
+            node.left = leftRotation(node.left);
+            return rightRotation(node);
         }
         else if(balanceFactor < -1 && node.right.id.compareTo(newNode.id)>0){
-            return rightRotation(node);
+            node.right = rightRotation(node.right);
+            return leftRotation(node);
         }
         return node;
     }
     public void add(String id, T value){
         Node<T> newNode = new Node<T>(id, value);
+        size++;
         raiz = addAlgorithm(raiz, newNode);
     }
     private Node<T> searchAlgorithm(Node<T> node,String id){
@@ -164,13 +170,16 @@ public class AVL<T> {
         if(node == null) return null;
         return node.value;
     }
-    private Node<T> removeAlgorithm(Node<T> node,String id){
-        if(node == null) return null;
+    private Node<T> popAlgorithm(Node<T> node,String id){
+        if(node == null){
+            size++;
+            return node;
+        }
         if(node.id.compareTo(id)<0){
-            node.right = removeAlgorithm(node.right, id);
+            node.right = popAlgorithm(node.right, id);
         }
         else if(node.id.compareTo(id)>0){
-            node.left = removeAlgorithm(node.left, id);
+            node.left = popAlgorithm(node.left, id);
         }
         else{
             if(node.left == null){
@@ -179,6 +188,40 @@ public class AVL<T> {
             else if(node.right == null){
                 return node.left;
             }
+            Node<T> successor = successorInOrder(node.right);
+            node.value = successor.value;
+            node.id = successor.id;
+            node.right = popAlgorithm(node.right, node.id);
         }
+        updateHeight(node);
+        int balanceFactor = getBalance(node);
+
+        if(balanceFactor >1 && getBalance(node.left)>=0){
+            return rightRotation(node);
+        }
+        else if(balanceFactor <-1 && getBalance(node.right)<=0){
+            return leftRotation(node);
+        }
+        else if(balanceFactor > 1 && getBalance(node.left)<0){
+            node.left = rightRotation(node.left);
+            return rightRotation(node);
+        }
+        else if(balanceFactor < -1 && getBalance(node.right)>0){
+            node.right = rightRotation(node.right);
+            return leftRotation(node);
+        }
+        return node;
+    }
+
+    public void pop(String id){
+        size--;
+        popAlgorithm(raiz, id);
+    }
+    public void clear(){
+        raiz = null;
+        size = 0;
+    }
+    public int size(){
+        return size;
     }
 }
