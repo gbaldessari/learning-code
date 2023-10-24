@@ -33,7 +33,7 @@ create table Funcionario(
 );
 create table Estudiante(
 	id text primary key,
-	id_unidad text references Carrera(id) not null,
+	id_carrera text references Carrera(id) not null,
 	rut_persona text references Persona(rut) not null,
 	fecha_inicio date not null,
 	fecha_termino date
@@ -119,7 +119,7 @@ INSERT INTO Funcionario (id, id_unidad, rut_persona, fecha_inicio, fecha_termino
   ('F10', 'U5', '282828282', '2013-02-15', '2022-08-30');
 
 -- Insertar estudiantes
-INSERT INTO Estudiante (id, id_unidad, rut_persona, fecha_inicio, fecha_termino) VALUES
+INSERT INTO Estudiante (id, id_carrera, rut_persona, fecha_inicio, fecha_termino) VALUES
   ('E1', 'C1', '123456789', '2010-09-05', null),
   ('E2', 'C2', '987654321', '2013-02-10', '2018-09-30'),
   ('E3', 'C3', '111111111', '2011-02-01', '2016-11-30'),
@@ -146,7 +146,7 @@ where E.fecha_inicio = (
 -- b. Obtenga la persona que más tiempo lleva en la UCN
 select tabla.nombre, tabla.rut, tabla.duracion
 from(
-select P.rut as rut, P.nombre as nombre, 
+select P.rut, P.nombre, 
     greatest(
         max(coalesce(E.fecha_termino, NOW()) - E.fecha_inicio),
         max(coalesce(F.fecha_termino, NOW()) - F.fecha_inicio),
@@ -164,16 +164,15 @@ limit 1
 
 -- c. Obtenga la persona que más veces ha sido estudiante en la UCN
 select P.nombre, P.rut, count(rut) as veces_estudiante
-from Persona P
+from Persona as P
 inner join Estudiante as E on P.rut = E.rut_persona
 group by P.rut, P.nombre
 order by 3 desc
 limit 1
 
 -- d. Liste a todas las personas de la UCN, indicando la cantidad de roles que han desempeñado
-select P.nombre, P.rut,
-    count(distinct E.rut_persona) + count(distinct F.rut_persona)+ count(distinct Pr.rut_persona) as roles
-from Persona P
+select P.nombre, P.rut, count(distinct E.rut_persona) + count(distinct F.rut_persona)+ count(distinct Pr.rut_persona) as roles
+from Persona as P
 left join Estudiante as E on P.rut = E.rut_persona
 left join Funcionario as F on P.rut = F.rut_persona
 left join Profesor as Pr on P.rut = Pr.rut_persona
@@ -182,7 +181,7 @@ order by 3 desc, 1 asc;
 
 -- e. Dada una fecha (por ejemplo, “2023-10-01”) indique la cantidad de personas relacionadas con cada una de las unidades de la UCN
 select U.nombre, U.id, count(P.rut) as personas
-from Unidad U
+from Unidad as U
 left join (Persona as P
     left join Funcionario as F on P.rut = F.rut_persona and '2022-10-01' between F.fecha_inicio and F.fecha_termino
     left join Profesor as Pr on P.rut = Pr.rut_persona and '2022-10-01' between Pr.fecha_inicio and Pr.fecha_termino
@@ -191,21 +190,16 @@ group by U.id, U.nombre
 order by 3 desc
 
 -- f. Liste todas las unidades, indicando la cantidad de personas totales que han relacionadas con dicha unidad.
--- Carreras
-select C.nombre, C.id, count(P.rut) as personas
-from Carrera C
-left join (Persona P
-	left join Estudiante E on P.rut = E.rut_persona) on C.id = E.id_unidad
-group by C.id, C.nombre
-order by 3 desc, 1 asc
-
--- Unidades
-select U.nombre, U.id, count(P.rut) as personas
-from Unidad U
+select U.id, U.nombre, count(P.rut) as personas
+from Unidad as U
 left join (Persona as P
-	left join Estudiante as E on P.rut = E.rut_persona
     left join Funcionario as F on P.rut = F.rut_persona
     left join Profesor as Pr on P.rut = Pr.rut_persona
-) on U.id = E.id_unidad or U.id = F.id_unidad or U.id = Pr.id_unidad
+) on U.id = F.id_unidad or U.id = Pr.id_unidad
 group by U.id, U.nombre
-order by 3 desc, 1 asc
+union
+select C.id, C.nombre, count(P.rut) as personas
+from Carrera as C
+left join (Persona as P 
+	left join Estudiante as E on P.rut = E.rut_persona) on C.id = E.id_carrera
+group by C.id, C.nombre
