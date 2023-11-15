@@ -1,4 +1,5 @@
 import psycopg2
+import re
 
 def queryGet(query):
     cur = conexion.cursor()
@@ -24,29 +25,53 @@ def iniciarConexion():
     global conexion
     conexion = psycopg2.connect(**parametros)
 
-def login(resultados):
+def iniciarSesion():
+    while True:
+        opcion = input("¿Desea ingresar (I) o registrarse (R)? ").lower()
+
+        if opcion == "i":
+            return ingresar()
+        elif opcion == "r":
+            return registrar()
+        else:
+            print("Ingrese una opción válida (I para ingresar, R para registrarse)")
+
+def ingresar():
     while True:
         usuario = input("Ingrese usuario: ")
         contrasena = input("Ingrese contraseña: ")
-        for i in resultados:
+        for i in usuarios:
             if usuario == i[1] and contrasena == i[2]:
                 return i
-        valorRegistro = registro(usuario,contrasena)
-        if valorRegistro != False:
-            return valorRegistro
-        
-def registro(usuario,contrasena):
+        print("Credenciales incorrectas. Inténtelo nuevamente.")
+
+def registrar():
+    usuario = input("Ingrese usuario: ")
     while True:
-        agregar = input("Desea registrar un nuevo cliente (Y/N): ").lower()
-        if agregar == "y":
+        contrasena = input("Ingrese contraseña: ")
+        if validarContrasena(contrasena):
             nombre = input("Ingrese el nombre del cliente: ")
-            numero = input("Ingrese el numero de telefono del cliente: ")
-            querySet("insert into cliente (correo,nombre,contrasena,numero_telefono) values ('" +usuario+"','"+nombre+"','"+contrasena+"','"+numero+"');")
-            return queryGet("select nombre,correo,contrasena,numero_telefono,'cliente' from cliente where correo = '"+usuario+"'")[0]
-        elif agregar == "n":
-            return False
+            numero = input("Ingrese el número de teléfono del cliente: ")
+            querySet("insert into cliente (correo, nombre, contrasena, numero_telefono) values ('" + usuario + "','" + nombre + "','" + contrasena + "','" + numero + "');")
+            return queryGet("select nombre, correo, contrasena, numero_telefono, 'cliente' from cliente where correo = '" + usuario + "'")[0]
         else:
-            print("Ingrese un valor valido")
+            print("La contraseña no cumple con los requisitos. Inténtelo nuevamente.")
+
+def validarContrasena(contrasena):
+    if 6 <= len(contrasena) <= 8:
+        if re.search(r"[A-Z]", contrasena):
+            if re.search(r"\d", contrasena):
+                if re.search(r"[!@#$%^&*()-_=+{};:'\",.<>?/\\|`~]", contrasena):
+                    return True
+                else:
+                    print("La contraseña debe contener al menos un carácter especial.")
+            else:
+                print("La contraseña debe contener al menos un número.")
+        else:
+            print("La contraseña debe contener al menos una letra mayúscula.")
+    else:
+        print("La longitud de la contraseña debe estar entre 6 y 8 caracteres.")
+    return False
 
 def registrarProducto():
     id = input("Ingrese el id del producto: ")
@@ -89,8 +114,8 @@ def menuCliente(usuarioIniciado):
     print("Menu Cliente")
 
 iniciarConexion()
-resultados = queryGet("select nombre,correo,contrasena,' ','admin' from administrador union select nombre,correo,contrasena,numero_telefono,'cliente' from cliente")
-usuarioIniciado = login(resultados)
+usuarios = queryGet("select nombre,correo,contrasena,' ','admin' from administrador union select nombre,correo,contrasena,numero_telefono,'cliente' from cliente")
+usuarioIniciado = iniciarSesion()
 
 if(usuarioIniciado[4] == "admin"):
     menuAdmin()
