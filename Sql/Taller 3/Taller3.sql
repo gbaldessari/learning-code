@@ -40,7 +40,3 @@ insert into Administrador(correo,nombre,contrasena) values
 
 insert into Cliente(correo,nombre,contrasena,numero_telefono) values
     ('giacomo@baldessari.it','giacomo','odioItalia','666');
-
-select correo,contrasena,'admin' from administrador
-union
-select correo,contrasena,'cliente' from cliente
