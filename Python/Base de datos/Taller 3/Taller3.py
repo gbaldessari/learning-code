@@ -2,6 +2,7 @@ import psycopg2
 import re
 import datetime
 
+# Función para ejecutar consultas SELECT y obtener resultados
 def queryGet(query):
     cur = conexion.cursor()
     cur.execute(query)
@@ -9,12 +10,14 @@ def queryGet(query):
     cur.close()
     return resultados
 
+# Función para ejecutar consultas INSERT, UPDATE o DELETE
 def querySet(query):
     cur = conexion.cursor()
     cur.execute(query)
     conexion.commit()
     cur.close()
 
+# Función para establecer una conexión con la base de datos
 def iniciarConexion():
     parametros = {
         "host": "localhost",
@@ -26,6 +29,7 @@ def iniciarConexion():
     global conexion
     conexion = psycopg2.connect(**parametros)
 
+# Función para manejar el inicio de sesión o registro de usuario
 def iniciarSesion():
     while True:
         opcion = input("¿Desea ingresar (I) o registrarse (R)? ").lower()
@@ -37,6 +41,7 @@ def iniciarSesion():
         else:
             print("Ingrese una opción válida (I para ingresar, R para registrarse)")
 
+# Función para el inicio de sesión de usuario
 def ingresar():
     while True:
         usuario = input("Ingrese usuario: ")
@@ -47,6 +52,7 @@ def ingresar():
                 return i
         print("Credenciales incorrectas. Inténtelo nuevamente.")
 
+# Función para el registro de usuario
 def registrar():
     usuario = input("Ingrese usuario: ")
 
@@ -61,6 +67,7 @@ def registrar():
         else:
             print("La contraseña no cumple con los requisitos. Inténtelo nuevamente.")
 
+# Función para validar la contraseña según ciertos criterios
 def validarContrasena(contrasena):
     if not 6 <= len(contrasena) <= 8:
         print("La longitud de la contraseña debe estar entre 6 y 8 caracteres.")
@@ -76,6 +83,7 @@ def validarContrasena(contrasena):
         return False
     return True
 
+# Función para registrar un producto
 def registrarProducto():
     id = input("Ingrese el id del producto: ")
     nombre = input("Ingrese el nombre del producto: ")
@@ -87,7 +95,7 @@ def registrarProducto():
         except ValueError:
             print("Por favor, ingrese un valor válido para el precio.")
     
-    descripcion = input("Ingrese la descripcion del producto: ")
+    descripcion = input("Ingrese la descripción del producto: ")
     
     while True:
         try:
@@ -98,6 +106,7 @@ def registrarProducto():
     
     querySet("insert into producto(id_producto,nombre,precio,descripcion,stock) values ('"+id+"','"+nombre+"','"+str(precio)+"','"+descripcion+"','"+str(stock)+"');")
 
+# Función para ver detalles de un producto
 def verProducto():
     id = input("Ingrese el id del producto que desea ver: ")
     producto = queryGet("select * from producto where id_producto = '" + id + "'")
@@ -112,6 +121,7 @@ def verProducto():
     else:
         print("No se encontró un producto con el ID proporcionado.")
 
+# Función para actualizar el inventario de un producto
 def actualizarInventario():
     id = input("Ingrese el id del producto que desea actualizar: ")
     producto = queryGet("select * from producto where id_producto = '" + id + "'")
@@ -143,6 +153,7 @@ def actualizarInventario():
     else:
         print("No se encontró un producto con el ID proporcionado.")
 
+# Función para ver productos con bajo stock
 def verProductosBajosStock():
     umbral = int(input("Ingrese el umbral de stock: "))
     productos = queryGet("select * from producto where stock <= " + str(umbral))
@@ -159,8 +170,7 @@ def verProductosBajosStock():
     else:
         print("No hay productos con stock por debajo del umbral proporcionado.")
 
-
-
+# Función para registrar una venta
 def registrarVenta(id_administrador):
     ventas = queryGet("select count(*) from compra")
     id_compra = str(ventas[0][0])
@@ -189,6 +199,7 @@ def registrarVenta(id_administrador):
                 print("Venta registrada correctamente.")
                 return
 
+# Función para ver el historial de ventas
 def verHistorialVentas():
     ventas = queryGet("select * from compra")
 
@@ -214,14 +225,16 @@ def verHistorialVentas():
     else:
         print("No hay ventas registradas.")
 
+# Función para ver la información personal del usuario
 def verInformacionPersonal(usuarioIniciado):
-    print("Informacion Personal:")
+    print("Información Personal:")
     print("Nombre: " + usuarioIniciado[0])
     print("Contraseña :" + usuarioIniciado[2])
     print("Correo: " + usuarioIniciado[1])
-    print("Numero de telefono: " + usuarioIniciado[3])
+    print("Número de teléfono: " + usuarioIniciado[3])
     print("-----------------------------")
     
+# Función para ver el catálogo de productos
 def verCatalogoProductos():
     productos = queryGet("select * from producto")
     if productos:
@@ -235,6 +248,7 @@ def verCatalogoProductos():
     else:
         print("No hay productos disponibles en la tienda.")
 
+# Función para que un cliente realice una compra
 def realizarCompra(usuarioIniciado):
     id_compra = str(queryGet("select count(*) from compra")[0][0])
     fecha = datetime.date.today().strftime("%Y-%m-%d")
@@ -260,15 +274,13 @@ def realizarCompra(usuarioIniciado):
             elif agregar_producto.lower() == 'no' or agregar_producto.lower() == 'n':
                 print("Compra realizada correctamente.")
                 return
-    
-    
 
-
+# Menú para el administrador
 def menuAdmin(id):
     while True:
-        print("== Menu Administrador ==")
+        print("== Menú Administrador ==")
         print("1) Registrar nuevo producto")
-        print("2) Informacion de producto")
+        print("2) Información de producto")
         print("3) Actualizar inventario")
         print("4) Productos bajos de stock")
         print("5) Registrar venta")
@@ -290,14 +302,14 @@ def menuAdmin(id):
         elif opcion == "7":
             break
         else:
-            print("Ingrese una opcion valida")
-        
+            print("Ingrese una opción válida")
 
+# Menú para el cliente
 def menuCliente(usuarioIniciado):
     while True:
-        print("== Menu Cliente ==")
-        print("1) Ver informacion personal")
-        print("2) Ver catalogo de productos")
+        print("== Menú Cliente ==")
+        print("1) Ver información personal")
+        print("2) Ver catálogo de productos")
         print("3) Realizar una compra")
         print("4) Salir")
         opcion = input()
@@ -307,16 +319,20 @@ def menuCliente(usuarioIniciado):
         elif opcion == "2":
             verCatalogoProductos()
         elif opcion == "3":
-            print(1)
+            realizarCompra(usuarioIniciado)
         elif opcion == "4":
             break
 
-
-
+# Establecer conexión a la base de datos
 iniciarConexion()
+
+# Obtener datos de usuarios desde la base de datos
 usuarios = queryGet("select nombre,correo,contrasena,' ','admin' from administrador union select nombre,correo,contrasena,numero_telefono,'cliente' from cliente")
+
+# Iniciar sesión o registro de usuario
 usuarioIniciado = iniciarSesion()
 
+# Verificar el rol del usuario y dirigir al menú correspondiente
 if(usuarioIniciado[4] == "admin"):
     menuAdmin(id)
 elif(usuarioIniciado[4]=="cliente"):
