@@ -214,7 +214,16 @@ def verHistorialVentas():
     else:
         print("No hay ventas registradas.")
 
-
+def informacionPersonal(usuarioIniciado):
+    print("===Datos===")
+    print("Nombre: " + usuarioIniciado[0])
+    print("Contraseña :" + usuarioIniciado[2])
+    print("Correo: " + usuarioIniciado[1])
+    print("Numero de telefono: " + usuarioIniciado[3])
+    print("")
+    
+def verCatalogo():
+    print(queryGet("select * from producto"))
 def menuAdmin(id):
     while True:
         print("==Menu Administrador==")
@@ -245,7 +254,24 @@ def menuAdmin(id):
         
 
 def menuCliente(usuarioIniciado):
-    print("Menu Cliente")
+    while True:
+        print("==Menu Cliente==")
+        print("1) Ver informacion personal")
+        print("2) Ver catalogo de productos")
+        print("3) Realizar una compra")
+        print("4) Salir")
+        opcion = input()
+
+        if opcion == "1":
+            informacionPersonal(usuarioIniciado)
+        elif opcion == "2":
+            verCatalogo()
+        elif opcion == "3":
+            print(1)
+        elif opcion == "4":
+            break
+
+
 
 iniciarConexion()
 usuarios = queryGet("select nombre,correo,contrasena,' ','admin' from administrador union select nombre,correo,contrasena,numero_telefono,'cliente' from cliente")
