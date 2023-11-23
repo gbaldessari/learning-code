@@ -214,19 +214,59 @@ def verHistorialVentas():
     else:
         print("No hay ventas registradas.")
 
-def informacionPersonal(usuarioIniciado):
-    print("===Datos===")
+def verInformacionPersonal(usuarioIniciado):
+    print("Informacion Personal:")
     print("Nombre: " + usuarioIniciado[0])
     print("Contraseña :" + usuarioIniciado[2])
     print("Correo: " + usuarioIniciado[1])
     print("Numero de telefono: " + usuarioIniciado[3])
-    print("")
+    print("-----------------------------")
     
-def verCatalogo():
-    print(queryGet("select * from producto"))
+def verCatalogoProductos():
+    productos = queryGet("select * from producto")
+    if productos:
+        print("Catálogo de productos:")
+        for producto in productos:
+            print("ID: ", producto[0])
+            print("Nombre: ", producto[1])
+            print("Precio: ", producto[2])
+            print("Descripción: ", producto[3])
+            print("-----------------------------")
+    else:
+        print("No hay productos disponibles en la tienda.")
+
+def realizarCompra(usuarioIniciado):
+    id_compra = str(queryGet("select count(*) from compra")[0][0])
+    fecha = datetime.date.today().strftime("%Y-%m-%d")
+    querySet("insert into compra(id_compra, id_administrador, id_cliente, fecha) values ('"+id_compra+"','N.A','"+usuarioIniciado[1]+"','"+fecha+"');")
+    
+    while True:
+        id_producto = input("Ingrese el id del producto que desea comprar: ")
+        
+        while True:
+            try:
+                cantidad = int(input("Ingrese la cantidad que desea comprar de este producto: "))
+                break
+            except ValueError:
+                print("Por favor, ingrese un número válido para la cantidad.")
+        
+        querySet("insert into detalle_compra(id_compra, id_producto, cantidad) values ('"+id_compra+"','"+id_producto+"','"+str(cantidad)+"');")
+        print("Producto agregado a la compra.")
+
+        while True:
+            agregar_producto = input("¿Desea agregar un nuevo producto a la compra? (Si/No): ")
+            if agregar_producto.lower() == 'si' or agregar_producto.lower() == 's':
+                break
+            elif agregar_producto.lower() == 'no' or agregar_producto.lower() == 'n':
+                print("Compra realizada correctamente.")
+                return
+    
+    
+
+
 def menuAdmin(id):
     while True:
-        print("==Menu Administrador==")
+        print("== Menu Administrador ==")
         print("1) Registrar nuevo producto")
         print("2) Informacion de producto")
         print("3) Actualizar inventario")
@@ -255,7 +295,7 @@ def menuAdmin(id):
 
 def menuCliente(usuarioIniciado):
     while True:
-        print("==Menu Cliente==")
+        print("== Menu Cliente ==")
         print("1) Ver informacion personal")
         print("2) Ver catalogo de productos")
         print("3) Realizar una compra")
@@ -263,9 +303,9 @@ def menuCliente(usuarioIniciado):
         opcion = input()
 
         if opcion == "1":
-            informacionPersonal(usuarioIniciado)
+            verInformacionPersonal(usuarioIniciado)
         elif opcion == "2":
-            verCatalogo()
+            verCatalogoProductos()
         elif opcion == "3":
             print(1)
         elif opcion == "4":
