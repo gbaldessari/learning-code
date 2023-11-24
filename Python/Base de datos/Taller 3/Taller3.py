@@ -85,7 +85,7 @@ def validarContrasena(contrasena):
 
 # Función para registrar un producto
 def registrarProducto():
-    id = input("Ingrese el id del producto: ")
+    id = "P"+str(queryGet("select count(*) from producto")[0][0]+1)
     nombre = input("Ingrese el nombre del producto: ")
     
     while True:
@@ -172,23 +172,36 @@ def verProductosBajosStock():
 
 # Función para registrar una venta
 def registrarVenta(id_administrador):
-    ventas = queryGet("select count(*) from compra")
-    id_compra = str(ventas[0][0])
+    id_compra = "C"+str(queryGet("select count(*) from compra")[0][0]+1)
     id_cliente = input("Ingrese el id del cliente: ")
     fecha = datetime.date.today().strftime("%Y-%m-%d")
     querySet("insert into compra(id_compra, id_administrador, id_cliente, fecha) values ('"+id_compra+"','"+id_administrador+"','"+id_cliente+"','"+fecha+"');")
     
     while True:
         id_producto = input("Ingrese el id del producto vendido: ")
-            
+        producto = queryGet("select * from producto where id_producto = '" + id_producto + "'")
+        if not producto:
+            print("No se encontró un producto con el ID proporcionado.")
+            continue
+
+        if producto[0][4] == 0:
+            print("Producto sin stock.")
+            continue
+
         while True:
             try:
                 cantidad = int(input("Ingrese la cantidad vendida de este producto: "))
-                break
+                if cantidad > producto[0][4]:
+                    print("No hay suficiente stock para este producto. Inténtelo nuevamente.")
+                elif cantidad < 1:
+                    print("Por favor, ingrese una cantidad válida.")
+                else:
+                    break
             except ValueError:
                 print("Por favor, ingrese un número válido para la cantidad.")
-            
+        
         querySet("insert into detalle_compra(id_compra, id_producto, cantidad) values ('"+id_compra+"','"+id_producto+"','"+str(cantidad)+"');")
+        querySet("update producto set stock = stock - "+str(cantidad)+" where id_producto = '"+id_producto+"'")
         print("Producto agregado a la venta.")
 
         while True:
@@ -198,6 +211,7 @@ def registrarVenta(id_administrador):
             elif agregar_producto.lower() == 'no' or agregar_producto.lower() == 'n':
                 print("Venta registrada correctamente.")
                 return
+
 
 # Función para ver el historial de ventas
 def verHistorialVentas():
@@ -250,21 +264,35 @@ def verCatalogoProductos():
 
 # Función para que un cliente realice una compra
 def realizarCompra(usuarioIniciado):
-    id_compra = str(queryGet("select count(*) from compra")[0][0])
+    id_compra = "C"+str(queryGet("select count(*) from compra")[0][0]+1)
     fecha = datetime.date.today().strftime("%Y-%m-%d")
     querySet("insert into compra(id_compra, id_administrador, id_cliente, fecha) values ('"+id_compra+"','N.A','"+usuarioIniciado[1]+"','"+fecha+"');")
     
     while True:
         id_producto = input("Ingrese el id del producto que desea comprar: ")
-        
+        producto = queryGet("select * from producto where id_producto = '" + id_producto + "'")
+        if not producto:
+            print("No se encontró un producto con el ID proporcionado.")
+            continue
+
+        if producto[0][4] == 0:
+            print("Producto sin stock.")
+            continue
+
         while True:
             try:
                 cantidad = int(input("Ingrese la cantidad que desea comprar de este producto: "))
-                break
+                if cantidad > producto[0][4]:
+                    print("No hay suficiente stock para este producto. Inténtelo nuevamente.")
+                elif cantidad < 1:
+                    print("Por favor, ingrese una cantidad válida.")
+                else:
+                    break
             except ValueError:
                 print("Por favor, ingrese un número válido para la cantidad.")
         
         querySet("insert into detalle_compra(id_compra, id_producto, cantidad) values ('"+id_compra+"','"+id_producto+"','"+str(cantidad)+"');")
+        querySet("update producto set stock = stock - "+str(cantidad)+" where id_producto = '"+id_producto+"'")
         print("Producto agregado a la compra.")
 
         while True:
@@ -274,6 +302,7 @@ def realizarCompra(usuarioIniciado):
             elif agregar_producto.lower() == 'no' or agregar_producto.lower() == 'n':
                 print("Compra realizada correctamente.")
                 return
+
 
 # Menú para el administrador
 def menuAdmin(id):
