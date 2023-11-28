@@ -31,7 +31,7 @@ public class App {
 				contenedor = new Contenedor(linea[0], Integer.parseInt(linea[2])*Integer.parseInt(linea[3]));
 				contenedores.ingresar(contenedor);
 			}
-			else if(existente&&!pesoMax) {
+			else if(existente&&!pesoMax&&contenedor!=null) {
 				contenedor.setPeso(Integer.parseInt(linea[2])*Integer.parseInt(linea[3]));
 			}
 		}

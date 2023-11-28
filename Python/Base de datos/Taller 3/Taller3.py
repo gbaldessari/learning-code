@@ -266,7 +266,7 @@ def verCatalogoProductos():
 def realizarCompra(usuarioIniciado):
     id_compra = "C"+str(queryGet("select count(*) from compra")[0][0]+1)
     fecha = datetime.date.today().strftime("%Y-%m-%d")
-    querySet("insert into compra(id_compra, id_administrador, id_cliente, fecha) values ('"+id_compra+"','N.A','"+usuarioIniciado[1]+"','"+fecha+"');")
+    querySet("insert into compra(id_compra, id_administrador, id_cliente, fecha) values ('"+id_compra+"','laura@tienda.com','"+usuarioIniciado[1]+"','"+fecha+"');")
     
     while True:
         id_producto = input("Ingrese el id del producto que desea comprar: ")

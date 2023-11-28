@@ -43,7 +43,7 @@ public class App {
 		} catch (FileNotFoundException e) {
 			error = true;
 		}
-		if(!error) {
+		if(!error&&scanFile!=null) {
 			while(scanFile.hasNextLine()) {
 				String[] linea = scanFile.nextLine().split(",");
 					sistema.obtenerCombates(linea);
@@ -63,7 +63,7 @@ public class App {
 		} catch (FileNotFoundException e) {
 			error = true;
 		}
-		if(!error) {
+		if(!error&&scanFile!=null) {
 			while(scanFile.hasNextLine()) {
 				String[] linea = scanFile.nextLine().split(",");
 				sistema.obtenerRobots(linea);
@@ -83,7 +83,7 @@ public class App {
 		} catch (FileNotFoundException e) {
 			error = true;
 		}
-		if(!error) {
+		if(!error&&scanFile!=null) {
 			while(scanFile.hasNextLine()) {
 				String[] linea = scanFile.nextLine().split(",");
 				sistema.obtenerArmas(linea);
@@ -103,7 +103,7 @@ public class App {
 		} catch (FileNotFoundException e) {
 			error = true;
 		}
-		if(!error) {
+		if(!error&&scanFile!=null) {
 			while(scanFile.hasNextLine()) {
 				String[] linea = scanFile.nextLine().split(",");
 				sistema.obtenerPiezas(linea);
