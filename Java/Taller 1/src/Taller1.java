@@ -68,11 +68,11 @@ public class Taller1 {
 		
 		// == Datos Extraterrestres ==
 		datosExtraterrestres = obtenerDatos(scanEx, datosExtraterrestres, error, creadoEt); // Se guardan los datos de Extraterrestres en la matriz
-		if(!creadoEt) scanEx.close(); // Cierra el archivo Extraterrestre
+		if(!creadoEt&&scanEx!= null) scanEx.close(); // Cierra el archivo Extraterrestre
 		
 		// == Datos Humanos ==
 		datosHumanos = obtenerDatos(scanH, datosHumanos, error, creadoH); // Se guardan los datos de Humanos en la matriz
-		if(!creadoH) scanH.close(); // Cierra el archivo Humano
+		if(!creadoH&&scanH!= null) scanH.close(); // Cierra el archivo Humano
 		
 		// == Aplicación ==
 		mostrarMenu(); // Muestra el menú
@@ -188,7 +188,7 @@ public class Taller1 {
 				System.out.println("Ha ocurrido un error inesperado al guardar");
 				error = true;
 			}
-			if(!error) {
+			if(!error&&writerET!= null&&writerH!= null) {
 				for(int i = 0;i<matrizET.length;i++) {
 					if(!matrizET[i][2].equalsIgnoreCase("")) {
 						writerET.print(matrizET[i][0]+", "+matrizET[i][1]+", "+matrizET[i][2]+", "+
