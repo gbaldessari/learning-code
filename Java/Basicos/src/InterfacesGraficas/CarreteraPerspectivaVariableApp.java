@@ -13,9 +13,11 @@ public class CarreteraPerspectivaVariableApp extends JFrame {
 
         JPanel panel = new JPanel() {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(final Graphics g) {
                 super.paintComponent(g);
-                dibujarCarreteraPerspectivaVariable((Graphics2D) g, getWidth() / 2, getHeight());
+                dibujarCarreteraPerspectivaVariable(
+                (Graphics2D) g, getWidth() / (2 + 1),
+                getWidth() / 2, 0, getHeight());
             }
         };
 
@@ -24,27 +26,28 @@ public class CarreteraPerspectivaVariableApp extends JFrame {
         setVisible(true);
     }
 
-    private void dibujarCarreteraPerspectivaVariable(Graphics2D g2d, int x, int altura) {
-        int anchoBase = 20; // Ancho de la carretera en la parte inferior
-        int anchoTope = 200; // Ancho de la carretera en la parte superior
+    private void dibujarCarreteraPerspectivaVariable(final Graphics2D g2d,
+            final int x1, final int x2, final int y1, final int y2) {
+        final int anchoBase = 20;
+        final int anchoTope = 200;
 
-        // Calcular el ancho de la carretera en función de la posición vertical
-        double factorPosicion = (double) altura / getHeight();
-        int anchoActual = (int) (anchoTope - (anchoTope-anchoBase) * factorPosicion);
+        double factorPosicion = (double) (y2 - y1) / getHeight();
+        final int anchoActual = (int) (anchoTope
+                - (anchoTope - anchoBase) * factorPosicion);
 
         int[] xPoints = {
-                x - anchoActual / 2, x + anchoActual / 2,
-                x + anchoTope / 2, x - anchoTope / 2
+                x1 - anchoActual / 2, x1 + anchoActual / 2,
+                x2 + anchoTope / 2, x2 - anchoTope / 2
         };
 
-        int[] yPoints = {0, 0, altura, altura};
+        int[] yPoints = {y1, y1, y2, y2};
 
-        // Configurar el color y rellenar el polígono
-        g2d.setColor(Color.GRAY); // Puedes ajustar el color según tus preferencias
-        g2d.fillPolygon(xPoints, yPoints, 4);
+        g2d.setColor(Color.GRAY);
+        final int vertices = 4;
+        g2d.fillPolygon(xPoints, yPoints, vertices);
     }
 
-    public static void main(String[] args) {
+    public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> new CarreteraPerspectivaVariableApp());
     }
 }
