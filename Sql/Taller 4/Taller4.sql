@@ -17,6 +17,7 @@ drop table if exists Mesa cascade;
 drop table if exists Camarero cascade;
 drop table if exists Sector cascade;
 drop table if exists Piso cascade;
+drop table if exists IngresosDiarios cascade;
 
 create table Camarero (
     rutCamarero text primary key,
@@ -119,6 +120,7 @@ create table MenuDiaItem (
 create table PedidoMesaItem (
     idPedidoMesa int references PedidoMesa(idPedidoMesa) not null,
     idItem int references Item(idItem) not null,
+    cantidad int not null,
     primary key (idPedidoMesa,idItem)
 );
 create table ItemProducto(
@@ -127,107 +129,322 @@ create table ItemProducto(
     cantidad int not null,
     primary key (idItem,idProducto)
 );
+create table IngresosDiarios (
+    fecha date primary key,
+    monto_vendido int
+);
+CREATE OR REPLACE FUNCTION actualizarIngresosDiarios()
+RETURNS TRIGGER
+AS $$
+DECLARE
+    monto_total_pedido INT;
+BEGIN
+    IF NEW.fechaHoraPedido > NEW.fechaHoraLLegadaPedido THEN
+        RAISE EXCEPTION 'La fecha de llegada debe ser posterior a la fecha de pedido.';
+    END IF;
 
--- Insert sample data into Piso table
-INSERT INTO Piso (numeroPiso) VALUES
-(1),
-(2),
-(3);
+    SELECT COALESCE(SUM(PPS.constoUnitario * PPS.cantidad), 0)
+    INTO monto_total_pedido
+    FROM PedidoProductoSuministro PPS
+    WHERE PPS.idPedido = NEW.idPedido;
 
--- Insert sample data into Sector table
-INSERT INTO Sector (numeroPiso, numeroSector, vipS_N, terrazaS_N) VALUES
+    BEGIN
+        IF EXISTS (SELECT 1 FROM IngresosDiarios WHERE fecha = CURRENT_DATE) THEN
+            UPDATE IngresosDiarios
+            SET monto_vendido = monto_vendido + monto_total_pedido
+            WHERE fecha = CURRENT_DATE;
+        ELSE
+            INSERT INTO IngresosDiarios (fecha, monto_vendido)
+            VALUES (CURRENT_DATE, monto_total_pedido);
+        END IF;
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE EXCEPTION 'Error al actualizar IngresosDiarios: %', SQLERRM;
+    END;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER pedidoRealizado
+AFTER INSERT
+ON Pedido
+FOR EACH ROW
+EXECUTE FUNCTION actualizarIngresosDiarios();
+
+CREATE OR REPLACE FUNCTION actualizarCostoPedido()
+RETURNS TRIGGER
+AS $$
+DECLARE
+    nuevo_costo float;
+BEGIN
+    nuevo_costo := NEW.constoUnitario * NEW.cantidad;
+
+    UPDATE ProductoSuministro
+    SET precioCostoPromedio = (precioCostoPromedio * cantidadStock + nuevo_costo) / (cantidadStock + NEW.cantidad),
+        cantidadStock = cantidadStock + NEW.cantidad
+    WHERE idProducto = NEW.idProducto AND idSuministro = NEW.idSuministro;
+
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER actualizarCostoPedido
+AFTER INSERT
+ON PedidoProductoSuministro
+FOR EACH ROW
+EXECUTE FUNCTION actualizarCostoPedido();
+
+CREATE OR REPLACE FUNCTION asignarMesa(
+    IN p_numero_piso INT,
+    IN p_numero_sector INT
+)
+RETURNS SETOF INT
+AS $$
+DECLARE
+    mesa_disponible INT;
+    numero_mesa_asignada INT;
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM Piso WHERE numeroPiso = p_numero_piso) THEN
+        RAISE EXCEPTION 'El piso especificado no existe.';
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM Sector WHERE numeroPiso = p_numero_piso AND numeroSector = p_numero_sector) THEN
+        RAISE EXCEPTION 'El sector especificado no existe.';
+    END IF;
+
+    BEGIN
+        SELECT COALESCE(MAX(numeroMesa), 0) + 1
+        INTO mesa_disponible
+        FROM Reservacion
+        WHERE numeroPiso = p_numero_piso
+            AND numeroSector = p_numero_sector
+            AND numeroMesa <= 3;
+
+        IF mesa_disponible = 0 THEN
+            mesa_disponible := 1;
+        END IF;
+
+        SELECT numeroMesa
+        INTO numero_mesa_asignada
+        FROM Mesa
+        WHERE numeroPiso = p_numero_piso
+            AND numeroSector = p_numero_sector
+            AND numeroMesa = mesa_disponible
+            AND rutCamarero IS NULL;
+
+        IF NOT FOUND THEN
+            numero_mesa_asignada := 0;
+        END IF;
+    EXCEPTION
+        WHEN OTHERS THEN
+            RAISE EXCEPTION 'Error al asignar mesa: %', SQLERRM;
+    END;
+
+    IF numero_mesa_asignada IS NOT NULL THEN
+        RETURN NEXT numero_mesa_asignada;
+    ELSE
+        RETURN NEXT 0;
+    END IF;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- Pisos
+INSERT INTO Piso(numeroPiso) VALUES (1), (2), (3);
+
+-- Sectores
+INSERT INTO Sector(numeroPiso, numeroSector, vipS_N, terrazaS_N) VALUES
 (1, 1, 'S', 'N'),
-(1, 2, 'N', 'Y'),
-(2, 1, 'N', 'N');
+(1, 2, 'N', 'S'),
+(2, 1, 'S', 'N'),
+(2, 2, 'N', 'N');
 
--- Insert sample data into Camarero table
-INSERT INTO Camarero (rutCamarero, nombreCompleto, telefono, fechaComienzoContrato, rutJefe) VALUES
-('123456789', 'John Doe', '555-1234', '2022-01-01', '987654321'),
-('987654321', 'Jane Smith', '555-5678', '2022-02-01', '123456789');
+-- Camareros
+INSERT INTO Camarero(rutCamarero, nombreCompleto, telefono, fechaComienzoContrato, rutJefe) VALUES
+('123456789', 'Juan Perez', '987654321', '2022-01-01', ''),
+('987654321', 'Maria Rodriguez', '123456789', '2022-02-01', '123456789');
 
--- Insert sample data into Mesa table
-INSERT INTO Mesa (numeroPiso, numeroSector, numeroMesa, rutCamarero) VALUES
-(1, 1, 101, '123456789'),
-(1, 2, 201, '987654321'),
-(2, 1, 301, '123456789');
+-- Mesas
+INSERT INTO Mesa(numeroPiso, numeroSector, numeroMesa, rutCamarero) VALUES
+(1, 1, 1, '123456789'),
+(1, 1, 2, '123456789'),
+(1, 2, 1, '987654321'),
+(2, 1, 1, '987654321');
 
--- Insert sample data into Pedido table
-INSERT INTO Pedido (idPedido, fechaHoraPedido, fechaHoraLLegadaPedido, consolidadoS_N) VALUES
-(1, '2023-01-15', '2023-01-15', 'S'),
-(2, '2023-02-20', '2023-02-20', 'N');
+-- Pedidos
+INSERT INTO Pedido(idPedido, fechaHoraPedido, fechaHoraLLegadaPedido, consolidadoS_N) VALUES
+(1, '2023-01-15 12:00:00', '2023-01-15 12:30:00', 'S'),
+(2, '2023-01-16 18:00:00', '2023-01-16 18:45:00', 'N');
 
--- Insert sample data into PedidoMesa table
-INSERT INTO PedidoMesa (idPedidoMesa, fechaHora, numeroPiso, numeroSector, numeroMesa) VALUES
-(1, '2023-01-15 12:30:00', 1, 1, 101),
-(2, '2023-02-20 18:45:00', 1, 2, 201);
+-- IngresosDiarios
+INSERT INTO IngresosDiarios(fecha, monto_vendido) VALUES
+('2023-01-15', 150),
+('2023-01-16', 200);
 
--- Insert sample data into Solicitante table
-INSERT INTO Solicitante (idSolicitante, nombreCompleto, telefono) VALUES
-('SOL001', 'Alice Johnson', '555-1111'),
-('SOL002', 'Bob Williams', '555-2222');
+-- Solicitantes
+INSERT INTO Solicitante(idSolicitante, nombreCompleto, telefono) VALUES
+('CL123', 'Cliente 1', '555-1234'),
+('CL456', 'Cliente 2', '555-5678');
 
--- Insert sample data into Reservacion table
-INSERT INTO Reservacion (idReservacion, fechaHora, idSolicitante, numeroPiso, numeroSector, numeroMesa) VALUES
-(1, '2023-03-01 19:00:00', 'SOL001', 2, 1, 301),
-(2, '2023-03-10 20:30:00', 'SOL002', 1, 1, 101);
+-- Reservaciones
+INSERT INTO Reservacion(idReservacion, fechaHora, idSolicitante, numeroPiso, numeroSector, numeroMesa) VALUES
+(1, '2023-01-17 19:00:00', 'CL123', 1, 1, 1),
+(2, '2023-01-18 20:00:00', 'CL456', 1, 2, 1);
 
--- Insert sample data into Suministro table
-INSERT INTO Suministro (idSuministro) VALUES
-(1),
-(2),
-(3);
+-- Productos
+INSERT INTO Producto(idProducto) VALUES (1), (2), (3);
 
--- Insert sample data into Producto table
-INSERT INTO Producto (idProducto) VALUES
-(1),
-(2),
-(3);
+-- Suministros
+INSERT INTO Suministro(idSuministro) VALUES (1), (2), (3);
 
--- Insert sample data into ProductoSuministro table
-INSERT INTO ProductoSuministro (idProducto, idSuministro, nombre, precioCostoPromedio, cantidadStock) VALUES
-(1, 1, 'Product A', 10.50, 100),
-(2, 2, 'Product B', 8.75, 150),
-(3, 3, 'Product C', 12.00, 120);
+-- ProductoSuministro
+INSERT INTO ProductoSuministro(idProducto, idSuministro, nombre, precioCostoPromedio, cantidadStock) VALUES
+(1, 1, 'Producto 1', 10.5, 100),
+(2, 2, 'Producto 2', 8.75, 50),
+(3, 3, 'Producto 3', 15.2, 75);
 
--- Insert sample data into PedidoProductoSuministro table
-INSERT INTO PedidoProductoSuministro (idPedido, idProducto, idSuministro, cantidad, constoUnitario) VALUES
-(1, 1, 1, 2, 21),
-(1, 2, 2, 3, 26),
-(2, 3, 3, 1, 12);
+-- Menú Categoría
+INSERT INTO MenuCategoria(idMenuCategoria, nombre) VALUES
+(1, 'Entrada'),
+(2, 'Plato Principal'),
+(3, 'Postre');
 
--- Insert sample data into MenuDia table
-INSERT INTO MenuDia (idMenuDia, fecha) VALUES
-(1, '2023-01-05'),
-(2, '2023-02-10');
+-- Items
+INSERT INTO Item(idItem, nombre, precioVenta, idMenuCategoria) VALUES
+(1, 'Entrada 1', 8, 1),
+(2, 'Plato Principal 1', 15, 2),
+(3, 'Postre 1', 6, 3);
 
--- Insert sample data into MenuCategoria table
-INSERT INTO MenuCategoria (idMenuCategoria, nombre) VALUES
-(1, 'Appetizer'),
-(2, 'Main Course'),
-(3, 'Dessert');
+-- Menú Día
+INSERT INTO MenuDia(idMenuDia, fecha) VALUES
+(1, '2023-01-15'),
+(2, '2023-01-16');
 
--- Insert sample data into Item table
-INSERT INTO Item (idItem, nombre, precioVenta, idMenuCategoria) VALUES
-(1, 'Item 1', 15, 1),
-(2, 'Item 2', 25, 2),
-(3, 'Item 3', 10, 3);
-
--- Insert sample data into Merma table
-INSERT INTO Merma (idMerma, fechaMerma, cantidad, idItem, rutCamarero) VALUES
-(1, '2023-01-10', 5, 1, '123456789'),
-(2, '2023-02-15', 3, 2, '987654321');
-
--- Insert sample data into MenuDiaItem table
-INSERT INTO MenuDiaItem (idMenuDia, idItem) VALUES
+-- MenuDiaItem
+INSERT INTO MenuDiaItem(idMenuDia, idItem) VALUES
 (1, 1),
-(2, 2);
+(1, 2),
+(2, 2),
+(2, 3);
 
--- Insert sample data into PedidoMesaItem table
-INSERT INTO PedidoMesaItem (idPedidoMesa, idItem) VALUES
-(1, 1),
-(2, 2);
+-- PedidoMesa
+INSERT INTO PedidoMesa(idPedidoMesa, fechaHora, numeroPiso, numeroSector, numeroMesa) VALUES
+(1, '2023-01-15 12:15:00', 1, 1, 1),
+(2, '2023-01-16 18:30:00', 2, 1, 1);
 
--- Insert sample data into ItemProducto table
-INSERT INTO ItemProducto (idItem, idProducto, cantidad) VALUES
+-- PedidoMesaItem
+INSERT INTO PedidoMesaItem(idPedidoMesa, idItem, cantidad) VALUES
 (1, 1, 2),
-(2, 2, 3);
+(1, 2, 1),
+(2, 2, 1),
+(2, 3, 3);
+
+-- Merma
+INSERT INTO Merma(idMerma, fechaMerma, cantidad, idItem, rutCamarero) VALUES
+(1, '2023-01-15', 2, 1, '123456789'),
+(2, '2023-01-16', 1, 2, '987654321');
+
+-- ItemProducto
+INSERT INTO ItemProducto(idItem, idProducto, cantidad) VALUES
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3);
+
+-- PedidoProductoSuministro
+INSERT INTO PedidoProductoSuministro(idPedido, idProducto, idSuministro, cantidad, constoUnitario) VALUES
+(1, 1, 1, 2, 21),
+(1, 2, 2, 1, 15),
+(2, 2, 2, 1, 15),
+(2, 3, 3, 3, 45);
+
+-- Escriba un bloque que despliegue el nombre del ítem y precio de venta, para aquel ítem que más
+-- ha sido solicitado por los clientes.
+select
+    i.nombre as nombreitem,
+    i.precioventa as precioventa,
+    count(pmi.iditem) as cantidadsolicitada
+from 
+    item as i
+join 
+    pedidomesaitem as pmi on i.iditem = pmi.iditem
+group by 
+    i.nombre, i.precioventa
+order by 
+    cantidadsolicitada desc
+limit 1;
+
+-- Los ingresos totales obtenidos en el ultimo mes -- 
+select 
+    coalesce(sum(i.precioventa * pmi.cantidad), 0) as ingresostotales
+from 
+    pedidomesa as pm
+join
+    pedidomesaitem as pmi on pm.idpedidomesa = pmi.idpedidomesa
+join
+    item as i on pmi.iditem = i.iditem
+where
+    pm.fechahora >= current_date - interval '1' month;
+   
+
+-- Los ingresos obtenidos para los sectores VIP que se encuentran en terraza --
+select
+    coalesce(sum(i.precioventa * pmi.cantidad), 0) as ingresosterrazavip
+from
+    pedidomesa as pm
+join
+    pedidomesaitem as pmi on pm.idpedidomesa = pmi.idpedidomesa
+join
+    item as i on pmi.iditem = i.iditem
+join
+    mesa as m on pm.numeropiso = m.numeropiso
+            and pm.numerosector = m.numerosector
+            and pm.numeromesa = m.numeromesa
+join
+    sector as s on m.numeropiso = s.numeropiso
+            and m.numerosector = s.numerosector
+where
+    s.vips_n = 's' and s.terrazas_n = 's'
+    and pm.fechahora >= current_date - interval '1' month;
+   
+-- Los ingresos obtenidos para los sectores VIP que no se encuentran en terraza --   
+select
+    coalesce(sum(i.precioventa * pmi.cantidad), 0) as ingresosvipnoterraza
+from
+    pedidomesa as pm
+join
+    pedidomesaitem as pmi on pm.idpedidomesa = pmi.idpedidomesa
+join
+    item as i on pmi.iditem = i.iditem
+join
+    mesa as m on pm.numeropiso = m.numeropiso
+            and pm.numerosector = m.numerosector
+            and pm.numeromesa = m.numeromesa
+join
+    sector as s on m.numeropiso = s.numeropiso
+            and m.numerosector = s.numerosector
+where
+    s.vips_n = 's' and s.terrazas_n = 'n'
+    and pm.fechahora >= current_date - interval '1' month;
+
+-- Los ingresos obtenidos de los sectores que no son VIP --
+select
+    coalesce(sum(i.precioventa * pmi.cantidad), 0) as ingresosnovip
+from
+    pedidomesa as pm
+join
+    pedidomesaitem as pmi on pm.idpedidomesa = pmi.idpedidomesa
+join
+    item as i on pmi.iditem = i.iditem
+join
+    mesa as m on pm.numeropiso = m.numeropiso
+            and pm.numerosector = m.numerosector
+            and pm.numeromesa = m.numeromesa
+join
+    sector as s on m.numeropiso = s.numeropiso
+            and m.numerosector = s.numerosector
+where
+    s.vips_n = 'n'
+    and pm.fechahora >= current_date - interval '1' month;
+    
