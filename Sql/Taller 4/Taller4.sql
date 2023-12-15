@@ -447,4 +447,3 @@ join
 where
     s.vips_n = 'n'
     and pm.fechahora >= current_date - interval '1' month;
-    
