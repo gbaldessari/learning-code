@@ -52,7 +52,7 @@ void Sistema::guardarPuntajes(NodoP* puntajes){
             texto= puntajes->nombre+","+to_string(puntajes->puntaje);
             }
         char textoC[100];
-        for(int i =0;i<sizeof(texto);i++){
+        for(unsigned long long i = 0;i<sizeof(texto);i++){
             textoC[i]=texto[i];
         }
         fprintf(archivo, textoC);
@@ -75,7 +75,7 @@ void Sistema::menu(Sistema* sistema){
         getline(cin,dato);
         dato = sistema->toLower(dato);
         if(dato=="a"){
-            puntajes = sistema->menuNuevoJuego(estado,puntajes,sistema);
+            puntajes = sistema->menuNuevoJuego(puntajes,sistema);
         }else if(dato=="b"){
             sistema->verPuntajes(puntajes);
         }else if ((dato=="salir"||dato=="s")){
@@ -88,7 +88,7 @@ void Sistema::menu(Sistema* sistema){
         }
     } while (dato!="salir"&&dato!="s");
 }
-NodoP* Sistema::menuNuevoJuego(Nodo* estadoActual, NodoP* puntajes,Sistema* sistema){
+NodoP* Sistema::menuNuevoJuego(NodoP* puntajes,Sistema* sistema){
     string dato;
     do
     {
@@ -191,7 +191,7 @@ NodoP* Sistema::partida(Nodo* estadoActual,NodoP* puntajes,int dificultad){
     return partida(estadoActual->seleccionarMovimiento(estadoActual,dificultad),puntajes,dificultad);
 }
 string Sistema::toLower(string dato){
-    for(int i = 0;i<dato.length();i++){
+    for(long long unsigned int i = 0;i<dato.length();i++){
         dato[i] = tolower(dato[i]);
     }
     return dato;

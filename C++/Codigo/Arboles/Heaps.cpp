@@ -47,10 +47,6 @@ void maxHeap(int* puntero, int largo){
         for(int i=1;i<primeraHoja;i++){
             int hDer=(2*i)+1;
             int hIzq=2*i;
-            bool existeHDer = true;
-            if(i==primeraHoja-1 && ultimaHoja %2 ==0){
-                existeHDer = false;
-            }
             if(*(puntero+hIzq)<*(puntero+hDer)||
             (i==primeraHoja-1 &&ultimaHoja%2==0)){
                 if(*(puntero+hIzq)<*(puntero+i)){

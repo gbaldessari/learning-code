@@ -10,7 +10,7 @@ private:
     Nodo* estado;
     NodoP* obtenerPuntajes();
     string toLower(string dato);
-    NodoP* menuNuevoJuego(Nodo* estadoActual, NodoP* puntajes, Sistema* sistema);
+    NodoP* menuNuevoJuego(NodoP* puntajes, Sistema* sistema);
     NodoP* partida(Nodo* estadoActual, NodoP* puntajes, int dificultad);
     NodoP* generarPuntaje(Nodo* estadoActual,NodoP* puntajes,int dificultad,int caso);
     void verPuntajes(NodoP* puntajes);
