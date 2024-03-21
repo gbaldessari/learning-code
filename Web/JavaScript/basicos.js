@@ -18,3 +18,8 @@ console.log(obj.nombre) // obtener atributos
 obj.numero = 123;
 
 console.table(obj);
+
+let promesa = new Promise((resolve, reject) => {
+    let condicion = true;
+    if
+})
