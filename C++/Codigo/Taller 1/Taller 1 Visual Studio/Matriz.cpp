@@ -78,7 +78,7 @@ void Matriz::agregarColumna(string _dato){
             aux = aux->getDerecha();
         }
 
-        if(cont==1<aux->getColumna()){
+        if(cont==(1)<aux->getColumna()){
             col->setIzquierda(nodo);
             nodo->setDerecha(col);
             col = nodo;
