@@ -1,4 +1,4 @@
-package Java.Patrones.src.Pajaros;
+package Pajaros;
 
 public class Loro implements Pajaro {
 

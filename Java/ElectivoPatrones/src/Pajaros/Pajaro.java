@@ -1,4 +1,4 @@
-package Java.Patrones.src.Pajaros;
+package Pajaros;
 
 public interface Pajaro {
     public void volar();
