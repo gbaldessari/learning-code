@@ -1,9 +1,0 @@
-Obtén un descuento en el curso de 
-Sumérgete en JavaScript! 
-
-PVP: 97€
-Con el descuento: 30€
-
-Entra en https://programee.com/sumergete-en-javascript/
-e introduce el CUPÓN: "TOPSECRET" para obtener el DESCUENTO
-durante el proceso de compra.

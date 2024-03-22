@@ -1,0 +1,15 @@
+.texto {
+    color: red;
+}
+.container {
+    display: flex;
+    flex-direction: row;
+}
+@media(max-width:800px){
+    .texto {
+        color: black;
+    }
+    .container {
+        flex-direction: column;
+    }
+}
