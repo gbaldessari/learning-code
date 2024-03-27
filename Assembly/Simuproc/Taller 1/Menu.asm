@@ -2,7 +2,7 @@ MSG ===Menu===
 MSG Escoja una opcion:
 MSG 1)Sas
 MSG 2)Sos
-LDT
+LDT ;Ingreso de
 CMP 020
 JEQ  01C
 CMP 021
@@ -14,6 +14,6 @@ JMP 009
 MSG Sos
 JMP 009
 1
-2
+10
 
 
