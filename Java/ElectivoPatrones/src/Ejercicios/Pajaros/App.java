@@ -1,4 +1,4 @@
-package Pajaros;
+package Ejercicios.Pajaros;
 
 import java.util.ArrayList;
 
