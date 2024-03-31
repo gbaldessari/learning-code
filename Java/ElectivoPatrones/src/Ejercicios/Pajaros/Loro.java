@@ -1,4 +1,4 @@
-package Pajaros;
+package Ejercicios.Pajaros;
 
 public class Loro implements PajaroVolador {
 
