@@ -1,17 +1,17 @@
 package cl.ucn.PIPA.utils;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.GZIPInputStream;
-import org.json.JSONArray;
-import org.json.JSONObject;
+//import java.io.BufferedReader;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+//import java.net.HttpURLConnection;
+//import java.net.MalformedURLException;
+//import java.net.URI;
+//import java.net.URISyntaxException;
+//import java.net.URL;
+//import java.util.ArrayList;
+//import java.util.zip.GZIPInputStream;
+//import org.json.JSONArray;
+//import org.json.JSONObject;
 
 /**
  * Esta clase se encarga de listar y descargar archivos de datos NODE y EDGE
@@ -73,6 +73,7 @@ public final class CiudadesProvider {
         return theInstance;
     }
 
+    /* 
     private StringBuilder getURLContentsZIP(final String enlace) {
         System.out.println("Downloading " + enlace);
         URL url = null;
@@ -94,6 +95,7 @@ public final class CiudadesProvider {
         }
         return null;
     }
+    */
 
     /**
      * Funcion que retorna la ciudad a partir de su nombre.
@@ -102,6 +104,7 @@ public final class CiudadesProvider {
      * @return la ciudad obtenida
      */
     public Ciudad ciudad(final String nombre) {
+        /* 
         URL url = null;
         try {
             url = new URI(
@@ -137,6 +140,7 @@ public final class CiudadesProvider {
                 e.printStackTrace();
             }
         }
+        */
         return null;
     }
 
@@ -145,6 +149,7 @@ public final class CiudadesProvider {
      * @return los nombres de las ciudades
      */
     public List<String> list() {
+        /* 
         URL url = null;
         try {
             url = new URI(
@@ -173,6 +178,7 @@ public final class CiudadesProvider {
         } catch (URISyntaxException | IOException e) {
             e.printStackTrace();
         }
+        */
         return null;
     }
 }
