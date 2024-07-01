@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1716920526737
+Build-Jdk-Spec: 17
+Bundle-Activator: cl.ucn.felix.biblioteca.servicios.tui.activador.Invent
+ arioLibroTuiActivador
+Bundle-ManifestVersion: 2
+Bundle-Name: cl.ucn.felix.biblioteca.servicio.tui
+Bundle-SymbolicName: cl.ucn.felix.biblioteca.servicio.tui
+Bundle-Version: 1.0.0
+Created-By: Apache Maven Bundle Plugin 5.1.9
+Export-Package: cl.ucn.felix.biblioteca.servicios.tui;version="1.0.0";us
+ es:="cl.ucn.felix.biblioteca.api,cl.ucn.felix.biblioteca.servicio.api,o
+ rg.osgi.framework"
+Import-Package: cl.ucn.felix.biblioteca.api;version="[1.0,2)",cl.ucn.fel
+ ix.biblioteca.servicio.api;version="[1.0,2)",org.osgi.framework;version
+ ="[1.8,2)"
+Include-Resource: bundle.properties=src/main/resources/bundle.properties
+Originally-Created-By: Apache Maven Bundle Plugin 5.1.9
+Private-Package: cl.ucn.felix.biblioteca.servicios.tui.activador
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version=11))"
+Tool: Bnd-6.3.1.202206071316

@@ -1,0 +1,11 @@
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (1, 10.2, 0.5, 2014);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (2, 9.8, 0.7, 2015);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (3, 11.5, 1.2, 2016);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (4, 8.6, 0.3, 2017);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (5, 12.3, 1.5, 2018);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (6, 10.7, 0.8, 2019);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (7, 11.2, 1.0, 2020);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (8, 9.4, 0.6, 2021);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (9, 12.1, 1.3, 2022);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (10, 10.5, 0.9, 2023);
+INSERT INTO valores_clima (id, velocidad_viento, lluvia, anho) VALUES (11, 11.8, 1.1, 2024);
