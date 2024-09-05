@@ -1,2 +1,2 @@
 # Code
-These are my programming projects
+These are my (mini) programming projects
