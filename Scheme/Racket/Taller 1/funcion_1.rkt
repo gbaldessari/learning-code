@@ -22,7 +22,6 @@
   (or (ascendente lista) (descendente lista))
 )
 
-
 (println (estaOrdenada '(1 2 3 4 5)))
 (println (estaOrdenada '(5 4 3 2 1)))
 (println (estaOrdenada '()))
